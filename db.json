@@ -1,0 +1,26 @@
+{
+  "grocery": [
+    {
+      "name": "Dove Soap",
+      "id": "CDilSM5_dyM"
+    },
+    {
+      "name": "Milk",
+      "id": "TMXvZ2g41Uo"
+    },
+    {
+      "name": "ColdDrink",
+      "id": "zjnUS1wt_a0"
+    },
+    {
+      "name": "Rice",
+      "id": "D8Wuq0jOKPs"
+    },
+    {
+      "name": "Maize Meal",
+      "id": "eH5gt0apVJA"
+    }
+  ],
+  "users": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
