@@ -1,0 +1,8 @@
+.home-page{
+  display: flex;
+
+}
+.sidebar{
+    width: 10rem;
+    background-color: blueviolet;
+}

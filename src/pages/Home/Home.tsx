@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
+import styles from '../Home/Home.module.css'
 
 
 interface Item {
@@ -135,15 +136,15 @@ export const Home = () => {
   });
 
   return (
-  <ContentContainer>
-    <ContentContainer >
+  <ContentContainer className ={styles['home-page']}>
+    <ContentContainer className={styles['sidebar']} >
      SIDEbar
     </ContentContainer>
 
 
 
 
-    <ContentContainer>
+    <ContentContainer className={styles['home-content']}>
       <h1>My Shopping List</h1>
 
 
