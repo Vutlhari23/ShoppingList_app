@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import {Text} from ''
+import {Text} from '../../components/Text/Text';
+import { TextInput } from '../../components/TextInput/TextInput';
+import { Button } from '../../components/Button/Button';
+import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
+import styles from '../../pages/Login/Login.module.css'
+
 export const Login = () => {
 
 
@@ -30,32 +35,35 @@ export const Login = () => {
 
 
   return (
-    <div>
-
-          
-        <Text variant="h1"></Text>
 
 
+   <ContentContainer  className= {styles['login-container']}>
+      <ContentContainer className= {styles['login-content']} > 
+        <Text variant="h1">Log In</Text>
+         <TextInput
+         type='text'
+         label='Username :'
+         value={username}
+         onChange={(e)=> setUsername(e.target.value)}
+         
+         />
+         <TextInput
+         type='password'
+         label ='Password'
+         onChange={(e)=> setPassword(e.target.value)}
+         />
+         <Button
+         label= 'Log in'
+         onClick={handleSubmit}
+         
+         >
+         </Button>
+      </ContentContainer>
 
-        <h1>Login</h1>
-        <label>Name</label>
-        <input type="text"  
-        value={username}
-        onChange={(e)=> setUsername(e.target.value)}
-         ></input><br/>
-       <label>Email</label>
-   
-       <label> Password</label>
-        <input type="password" value={password}
-        onChange={(e)=> setPassword(e.target.value)}></input>
-        
+ </ContentContainer> 
+
       
-    
-     <button onClick={handleSubmit}>Submit</button>
-        
-
-      
-    </div>
+  
   )
 }
 
