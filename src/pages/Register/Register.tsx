@@ -21,24 +21,11 @@ const data=  await fetch(`http://localhost:3000/register`,
     headers :{'Content-Type':'application/Json'},
     body : JSON.stringify({"email": "vutlhari2m@gmail.com", "password" : "vutlhari@23D"}),
    }
-
-
-
-   
 );
-
-
     if(!data.ok){
         throw new Error('Https Error');
-
      }
    }
-
-
-
-
-
-
 
   return (
     <ContentContainer className= {styles['register-container']}>

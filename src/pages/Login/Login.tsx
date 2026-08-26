@@ -39,25 +39,38 @@ export const Login = () => {
 
    <ContentContainer  className= {styles['login-container']}>
       <ContentContainer className= {styles['login-content']} > 
-        <Text variant="h1">Log In</Text>
+        <Text 
+        className={styles.text}
+        
+        variant="h1">Log In</Text>
+        <label htmlFor="username ">Username</label>
          <TextInput
+          className={styles['text-input']}
+         id="username"
+         name="username"
          type='text'
-         label='Username :'
          value={username}
          onChange={(e)=> setUsername(e.target.value)}
          
          />
-         <TextInput
+        <label htmlFor="password">Password</label>
+         <TextInput 
+         className={styles['text-input']}
          type='password'
-         label ='Password'
+         id='password'
+         name='password'
          onChange={(e)=> setPassword(e.target.value)}
          />
          <Button
-         label= 'Log in'
+         label= 'Login'
          onClick={handleSubmit}
-         
+          className={styles['btn']}
          >
          </Button>
+         <Text
+         className={styles.text}
+          variant='h5'>Don't have an account? <a href='#'>Create Account</a></Text>
+
       </ContentContainer>
 
  </ContentContainer> 

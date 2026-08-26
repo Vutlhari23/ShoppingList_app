@@ -12,10 +12,32 @@
     
 }
 .login-content{
-    border: 1px solid black;
+    border: 1px solid lightgray;
     border-radius: 25px;
     width :350px;
-    height: 15rem;
+    height: 19rem;
     padding: 10px;
+    
 
 }
+.text-input{
+width:98%;
+margin-bottom: 10px;
+height: 30px;
+border-radius: 0.5rem;
+border: 1px solid lightgray;
+
+}
+.btn{
+    width:100%;
+    border-radius:0.5rem;
+    border : none;
+    height: 30px;
+}
+.text{
+    display: flex;
+    justify-content: center;
+}
+label{
+     padding-bottom:40px;
+    }
