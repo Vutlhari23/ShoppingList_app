@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
+import styles from '../Register/Register.module.css';
+import { Text } from '../../components/Text/Text';
+import { TextInput } from '../../components/TextInput/TextInput';
 
 export const Register = () => {
    const [name,setName] = useState('');
@@ -37,7 +41,10 @@ const data=  await fetch(`http://localhost:3000/register`,
 
 
   return (
-    <div>
+    <ContentContainer className= {styles['register-container']}>
+
+
+      <ContentContainer className= {styles['register-content']}>
         <h1>Register</h1>
         <label>Name</label>
         <input type="text"  
@@ -60,9 +67,12 @@ const data=  await fetch(`http://localhost:3000/register`,
 
      <button onClick={handleRegisterSubmit}>Submit</button>
         
+      </ContentContainer>
+    </ContentContainer>
+
 
       
-    </div>
+  
   )
 }
 
