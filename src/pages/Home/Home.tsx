@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
 import styles from '../Home/Home.module.css'
+import {Navbar} from '../../components/Navbar/Navbar'
 
 
 interface Item {
@@ -138,7 +139,7 @@ export const Home = () => {
   return (
   <ContentContainer className ={styles['home-page']}>
     <ContentContainer className={styles['sidebar']} >
-     SIDEbar
+     <Navbar/>
     </ContentContainer>
 
 

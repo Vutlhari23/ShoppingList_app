@@ -1,15 +1,16 @@
 import {Link} from "react-router-dom"
+import { ContentContainer } from "../ContentContainer/ContentContainer"
+import styles from  '../Navbar/Navbar.module.css'
 
 export const Navbar = () => {
   return (
 
-   <div style={{ width: "100px" ,height:"100px",display:" flex" ,gap : "15px"}}>
+ 
+    <ContentContainer className={styles['navbar'] }>
        <h3>My navbar</h3>
-       <Link to="/login">Login</Link>
-       <Link to="/register">Register</Link>
-       <Link to="/Home">Home</Link>
-       <Link to="/Profile">Profile</Link>
-     </div>
+       <Link to="/Home" className={styles.link}>Home</Link>
+       <Link to="/Profile" className={styles.link}> Profile</Link>
+     </ContentContainer>
   )
 }
 

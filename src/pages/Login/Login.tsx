@@ -4,6 +4,7 @@ import { TextInput } from '../../components/TextInput/TextInput';
 import { Button } from '../../components/Button/Button';
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
 import styles from '../../pages/Login/Login.module.css'
+import {Link} from "react-router-dom"
 
 export const Login = () => {
 
@@ -69,7 +70,12 @@ export const Login = () => {
          </Button>
          <Text
          className={styles.text}
-          variant='h5'>Don't have an account? <a href='#'>Create Account</a></Text>
+          variant='h5'> Don't have an account?
+          <Link to="/register">Register</Link>
+          </Text>
+
+          
+         
 
       </ContentContainer>
 

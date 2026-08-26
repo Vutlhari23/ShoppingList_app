@@ -1,8 +1,13 @@
 .home-page{
   display: flex;
+  height: 100vh;
 
 }
 .sidebar{
-    width: 10rem;
-    background-color: blueviolet;
+    width: 15rem;
+    height: 100vh;
+   border: 1px solid lightgray;
 }
+.home-content {
+    padding: 15px;
+  }

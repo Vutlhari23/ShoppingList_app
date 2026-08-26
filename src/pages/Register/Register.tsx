@@ -4,6 +4,7 @@ import styles from "../Register/Register.module.css";
 import { Text } from "../../components/Text/Text";
 import { TextInput } from "../../components/TextInput/TextInput";
 
+import {Link} from "react-router-dom"
 export const Register = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -73,7 +74,7 @@ export const Register = () => {
         <button className={styles.btn} onClick={handleRegisterSubmit}>Submit</button>
              <Text 
              className={styles.text}
-             variant='h5'>Already have an account?  <a href="#"> Login</a></Text>
+             variant='h5'>Already have an account?  <Link to="/login">Login</Link></Text>
       </ContentContainer>
     </ContentContainer>
   );
