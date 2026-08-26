@@ -1,26 +1,69 @@
 {
-  "grocery": [
+  "users": [
     {
-      "name": "Dove Soap",
-      "id": "CDilSM5_dyM"
+      "id": 1,
+      "email": "vutlhari23m@gmail.com",
+      "password": "vutlhari@23D",
+      "name": "Vu Maswa"
     },
     {
-      "name": "Milk",
-      "id": "TMXvZ2g41Uo"
-    },
-    {
-      "name": "ColdDrink",
-      "id": "zjnUS1wt_a0"
-    },
-    {
-      "name": "Rice",
-      "id": "D8Wuq0jOKPs"
-    },
-    {
-      "name": "Maize Meal",
-      "id": "eH5gt0apVJA"
+      "email": "vutlhari2m@gmail.com",
+      "password": "$2a$10$vl/HS6NhHo0QlAgO8pTNi.qpSaaAMR8DvUXAuE3R6r6AGyJlWydaa",
+      "id": 2
     }
   ],
-  "users": [],
+  "grocery": [
+    {
+      "name": "yt24y3",
+      "id": "0WZbI6T"
+    },
+    {
+      "name": "rtutru",
+      "id": "Dii3KGm"
+    },
+    {
+      "name": "trurtt",
+      "id": "lBGun3Z"
+    },
+    {
+      "name": "tutur",
+      "id": "JbzA5-Y"
+    },
+    {
+      "name": "tyutru",
+      "id": "Zhdz_8O"
+    }
+  ],
+  "people": [
+    {
+      "name": "Amukelani",
+      "surname": "Machete",
+      "email": "a@gamil.com",
+      "password": "1234",
+      "CellNo": "0634231555",
+      "id": "uTlu9JyBpSE"
+    },
+    {
+      "name": "hlamulo",
+      "surname": "Machete",
+      "email": "a@gamil.com",
+      "password": "12",
+      "CellNo": "0634231555",
+      "id": "tW4VLwHoZew"
+    },
+    {
+      "name": "Sicelo",
+      "surname": "Machete",
+      "email": "a@gamil.com",
+      "password": "8422",
+      "CellNo": "0634231555",
+      "id": "iKYC13p655o"
+    },
+    {
+      "username": "Amukelani",
+      "password": "1234",
+      "id": "jb-JFD1YtEY"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

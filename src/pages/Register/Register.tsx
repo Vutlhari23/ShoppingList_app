@@ -9,10 +9,25 @@ export const Register = () => {
 
 
 
-   const  handleRegisterSubmit = ()=>{
+   const  handleRegisterSubmit = async ()=>{
 
     
+const data=  await fetch(`http://localhost:3000/register`,
+   {method: 'POST',
+    headers :{'Content-Type':'application/Json'},
+    body : JSON.stringify({"email": "vutlhari2m@gmail.com", "password" : "vutlhari@23D"}),
+   }
 
+
+
+   
+);
+
+
+    if(!data.ok){
+        throw new Error('Https Error');
+
+     }
    }
 
 
