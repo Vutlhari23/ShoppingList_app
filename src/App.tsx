@@ -14,8 +14,6 @@ function App() {
    
   
 
-    <Navbar/>
-
  <Routes>
     <Route path="/Register" element={<Register/>}/>
     <Route path="/Login" element={<Login/>}/>

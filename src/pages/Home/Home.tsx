@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
+
 
 interface Item {
   id: string;
@@ -133,7 +135,15 @@ export const Home = () => {
   });
 
   return (
-    <div>
+  <ContentContainer>
+    <ContentContainer >
+     SIDEbar
+    </ContentContainer>
+
+
+
+
+    <ContentContainer>
       <h1>My Shopping List</h1>
 
 
@@ -164,7 +174,7 @@ export const Home = () => {
           <button onClick={() => HandleEdit(item)}>Edit</button>
         </div>
       ))}
-
+ 
       {/* Add Item Modal */}
       {showAddModal && (
         <div
@@ -255,6 +265,7 @@ export const Home = () => {
           </div>
         </div>
       )}
-    </div>
+      </ContentContainer>
+    </ContentContainer>
   );
 };
