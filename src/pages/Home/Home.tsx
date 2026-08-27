@@ -12,15 +12,15 @@ interface Item {
 }
 
 export const Home = () => {
-  const [name, setName] = useState<string>('');
+ 
   const [shoppingList, setShoppingList] = useState<Item[]>([]);
-  const [valueToFilter, setValueToFilter] = useState("");
+
   
 
   // Edit state
-  const [editingId, setEditingId] = useState<string | null>(null);
+  {/*const [editingId, setEditingId] = useState<string | null>(null);
   const [editName, setEditName] = useState<string>('');
-
+*/}
   // Add modal state
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
 
@@ -56,7 +56,7 @@ export const Home = () => {
   };
 
   // Update Request
-  const updateItem = async (id: string, data: Partial<Item>) => {
+  {/*const updateItem = async (id: string, data: Partial<Item>) => {
     try {
       const respond = await fetch(`http://localhost:3000/grocery/${id}`, {
         method: "PATCH",
@@ -72,6 +72,7 @@ export const Home = () => {
       console.error("Error updating the shopping item", error);
     }
   };
+  */}
 
   // Adding a new item (used by the Add Item modal now)
   const addItem = async (itemName: string) => {
@@ -104,13 +105,14 @@ export const Home = () => {
   };
 
   // Enter edit mode
+  {/*}
   const HandleEdit = (item: Item) => {
     setEditingId(item.id);
     setEditName(item.name);
   };
-
+*/}
   // Save edit
-  const HandleSaveEdit = async (id: string) => {
+  {/*const HandleSaveEdit = async (id: string) => {
     if (!editName.trim()) return;
 
     try {
@@ -129,7 +131,7 @@ export const Home = () => {
     setEditingId(null);
     setEditName('');
   };
-
+*/}
   
   const sortedList = [...shoppingList].sort((a, b) => {
     if (sortOrder === 'asc') return a.name.localeCompare(b.name);
@@ -169,7 +171,7 @@ export const Home = () => {
           <input type="radio" />
           <h6>{item.name}</h6>
           <button onClick={() => setItemToDelete(item)}>Delete</button>
-          <button onClick={() => HandleEdit(item)}>Edit</button>
+          {/*<button onClick={() => HandleEdit(item)}>Edit</button>*/}
         </div>
       ))}
  
@@ -186,12 +188,7 @@ export const Home = () => {
       )}
 
       {/* Edit Item Modal */}
-
-
-
-
-
-
+ap   
 
       {/* Delete Confirmation Modal */}
       {itemToDelete !== null && (

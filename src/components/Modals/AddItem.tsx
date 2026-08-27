@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Overlay } from "../Overlay/Overlay";
 import { ContentContainer } from "../ContentContainer/ContentContainer";
-import styles from '../Modals/AddItemModel.module.css'
+import styles from "../Modals/AddItemModel.module.css";
 
 export type NewItem = {
   name: string;
@@ -21,12 +21,10 @@ export const AddItem = ({ onClose, onSubmit }: AddItemProps) => {
 
   return (
     <Overlay onClose={onClose}>
-      <ContentContainer className={styles['modal']}
-        onClick= {(e) => e.stopPropagation ()}
-        
-        >
-      
-      
+      <ContentContainer
+        className={styles["modal"]}
+        onClick={(e) => e.stopPropagation()}
+      >
         <h3>Add new Item</h3>
 
         <label>Item name</label>
