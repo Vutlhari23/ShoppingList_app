@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { ContentContainer } from "../../components/ContentContainer/ContentContainer";
 import styles from "../Register/Register.module.css";
 import { Text } from "../../components/Text/Text";
-import { TextInput } from "../../components/TextInput/TextInput";
+
 
 import {Link} from "react-router-dom"
 export const Register = () => {
