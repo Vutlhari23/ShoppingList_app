@@ -66,7 +66,7 @@ export const AddItem = ({ onClose, onSubmit }: AddItemProps) => {
         <input
           type="text"
           value={notes}
-          placeholder="e.g. brand preference, size"
+          placeholder="e.g,brand preference, size"
           onChange={(e) => setNotes(e.target.value)}
         />
 
