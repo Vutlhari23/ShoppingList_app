@@ -36,6 +36,10 @@ return(
 
     {item.notes && <span>Notes : {item.notes}</span>}
     </ContentContainer>
+    <ContentContainer>
+      <Button label ="Edit "/>
+      <Button label ="Delete "/>
+    </ContentContainer>
   </ContentContainer>
 ))}
 </>
