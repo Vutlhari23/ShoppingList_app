@@ -157,9 +157,9 @@ export const Home = () => {
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc' | '')}
         >
-          <option value="">Unsorted List </option>
-          <option value="asc">ascending order</option>
-          <option value="desc">descending order</option>
+          <option value="">Default order</option>
+          <option value="asc">ascending</option>
+          <option value="desc">descending</option>
         </select>
       </div>
 
