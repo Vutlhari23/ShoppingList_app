@@ -17,7 +17,6 @@
       "cellNumber": "0739876543"
     }
   ],
-
   "shoppingLists": [
     {
       "id": "1",
@@ -38,7 +37,6 @@
       "createdAt": "2026-08-24T11:15:00.000Z"
     }
   ],
-
   "items": [
     {
       "id": "1",
@@ -102,6 +100,22 @@
       "notes": "9-pack",
       "category": "personal",
       "image": "https://example.com/images/toilet-paper.jpg"
+    },
+    {
+      "name": "sdvsdv",
+      "quantity": 1,
+      "category": "",
+      "listId": "1",
+      "createdAt": "2026-08-27T13:00:09.409Z",
+      "id": "uqvrXQ5"
+    },
+    {
+      "name": "ewewewerwrw",
+      "quantity": 1,
+      "category": "",
+      "listId": "1",
+      "createdAt": "2026-08-27T13:00:25.768Z",
+      "id": "gQkA-2a"
     }
   ]
 }
