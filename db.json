@@ -14,20 +14,8 @@
   ],
   "grocery": [
     {
-      "name": "tutur",
-      "id": "JbzA5-Y"
-    },
-    {
-      "name": "tyutru",
-      "id": "Zhdz_8O"
-    },
-    {
-      "name": "Dove Soap",
+      "name": "Dove Soapwrw",
       "id": "-WRQsru"
-    },
-    {
-      "name": "hdshfd",
-      "id": "BeHOWi0"
     },
     {
       "name": "fgfgf",
@@ -52,6 +40,10 @@
     {
       "name": "fgfgf",
       "id": "KH3dAfJ"
+    },
+    {
+      "name": "safsf",
+      "id": "odx0N1L"
     }
   ],
   "people": [
@@ -84,6 +76,6 @@
       "password": "1234",
       "id": "jb-JFD1YtEY"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
+
 }

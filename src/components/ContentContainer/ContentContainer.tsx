@@ -3,7 +3,8 @@ import React from 'react'
 type ContainerProp= {
     className?: string;
     style?: React.CSSProperties;
-    children:React.ReactNode
+    children:React.ReactNode;
+    onClick? : (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export const ContentContainer = ({className,style,children}: ContainerProp) => {

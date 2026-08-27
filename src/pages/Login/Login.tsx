@@ -60,6 +60,7 @@ export const Login = () => {
          type='password'
          id='password'
          name='password'
+        value={password}
          onChange={(e)=> setPassword(e.target.value)}
          />
          <Button

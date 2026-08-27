@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
 import styles from '../Home/Home.module.css'
 import {Navbar} from '../../components/Navbar/Navbar'
+import {AddItem} from '../../components/Modals/AddItem'
+import DeleteModal from '../../components/Modals/DeleteModal';
 
 
 interface Item {
@@ -10,14 +12,15 @@ interface Item {
 }
 
 export const Home = () => {
-  const [name, setName] = useState<string>('');
+ 
   const [shoppingList, setShoppingList] = useState<Item[]>([]);
-  const [valueToFilter, setValueToFilter] = useState("");
+
+  
 
   // Edit state
-  const [editingId, setEditingId] = useState<string | null>(null);
+  {/*const [editingId, setEditingId] = useState<string | null>(null);
   const [editName, setEditName] = useState<string>('');
-
+*/}
   // Add modal state
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
 
@@ -28,7 +31,6 @@ export const Home = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
 
   // Fetch all data from json-server on load to diplay on the UI
-  //This allows us to diplay the data saved in the Json-server instead of rendering nothing on load.
   useEffect(() => { fetch('http://localhost:3000/grocery')
       .then(res => res.json())
       .then(data => setShoppingList(data))
@@ -54,7 +56,7 @@ export const Home = () => {
   };
 
   // Update Request
-  const updateItem = async (id: string, data: Partial<Item>) => {
+  {/*const updateItem = async (id: string, data: Partial<Item>) => {
     try {
       const respond = await fetch(`http://localhost:3000/grocery/${id}`, {
         method: "PATCH",
@@ -70,17 +72,17 @@ export const Home = () => {
       console.error("Error updating the shopping item", error);
     }
   };
+  */}
 
-  // Adding a new item
-  const addItem = async () => {
-    if (!name.trim()) return;
+  // Adding a new item (used by the Add Item modal now)
+  const addItem = async (itemName: string) => {
+    if (!itemName.trim()) return;
 
-    const itemObjectToadd = { name: name };
+    const itemObjectToadd = { name: itemName };
 
     try {
       const newItem: Item = await postData('http://localhost:3000/grocery', itemObjectToadd);
-      setShoppingList([...shoppingList, newItem]);
-      setName('');
+      setShoppingList((prev) => [...prev, newItem]);
     } catch (error) {
       console.error("Failed to add item into the database.", error);
     }
@@ -103,13 +105,14 @@ export const Home = () => {
   };
 
   // Enter edit mode
+  {/*}
   const HandleEdit = (item: Item) => {
     setEditingId(item.id);
     setEditName(item.name);
   };
-
+*/}
   // Save edit
-  const HandleSaveEdit = async (id: string) => {
+  {/*const HandleSaveEdit = async (id: string) => {
     if (!editName.trim()) return;
 
     try {
@@ -128,7 +131,7 @@ export const Home = () => {
     setEditingId(null);
     setEditName('');
   };
-
+*/}
   
   const sortedList = [...shoppingList].sort((a, b) => {
     if (sortOrder === 'asc') return a.name.localeCompare(b.name);
@@ -142,13 +145,8 @@ export const Home = () => {
      <Navbar/>
     </ContentContainer>
 
-
-
-
     <ContentContainer className={styles['home-content']}>
       <h1>My Shopping List</h1>
-
-
 
       <button type="button" onClick={() => setShowAddModal(true)}>Add new item</button>
 
@@ -173,99 +171,32 @@ export const Home = () => {
           <input type="radio" />
           <h6>{item.name}</h6>
           <button onClick={() => setItemToDelete(item)}>Delete</button>
-          <button onClick={() => HandleEdit(item)}>Edit</button>
+          {/*<button onClick={() => HandleEdit(item)}>Edit</button>*/}
         </div>
       ))}
  
       {/* Add Item Modal */}
       {showAddModal && (
-        <div
-          style={{
-            position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.5)", display: "flex",
-            justifyContent: "center", alignItems: "center", zIndex: 1000,
+        <AddItem
+          onClose={() => setShowAddModal(false)}
+          onSubmit={async (newItem) => {
+            console.log("AddItem rendering")
+            await addItem(newItem.name);
+            setShowAddModal(false);
           }}
-          onClick={() => setShowAddModal(false)}
-        >
-          <div
-            style={{ backgroundColor: "white", padding: "20px", borderRadius: "8px", minWidth: "300px" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3>Add new Item</h3>
-            <input
-              type="text"
-              value={name}
-              placeholder="item"
-              onChange={(e) => setName(e.target.value)}
-              autoFocus
-            />
-            <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
-              <button
-                type="button"
-                onClick={async () => {
-                  await addItem();
-                  setShowAddModal(false);
-                }}
-              >
-                Add
-              </button>
-              <button type="button" onClick={() => setShowAddModal(false)}>Cancel</button>
-            </div>
-          </div>
-        </div>
+        />
       )}
 
       {/* Edit Item Modal */}
-      {editingId !== null && (
-        <div
-          style={{
-            position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.5)", display: "flex",
-            justifyContent: "center", alignItems: "center", zIndex: 1000,
-          }}
-          onClick={HandleCancelEdit}
-        >
-          <div
-            style={{ backgroundColor: "white", padding: "20px", borderRadius: "8px", minWidth: "300px" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3>Edit Item</h3>
-            <input
-              type="text"
-              value={editName}
-              onChange={(e) => setEditName(e.target.value)}
-              autoFocus
-            />
-            <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
-              <button onClick={() => HandleSaveEdit(editingId)}>Save</button>
-              <button onClick={HandleCancelEdit}>Cancel</button>
-            </div>
-          </div>
-        </div>
-      )}
+ap   
 
       {/* Delete Confirmation Modal */}
       {itemToDelete !== null && (
-        <div
-          style={{
-            position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.5)", display: "flex",
-            justifyContent: "center", alignItems: "center", zIndex: 1000,
-          }}
-          onClick={HandleCancelDelete}
-        >
-          <div
-            style={{ backgroundColor: "white", padding: "20px", borderRadius: "8px", minWidth: "300px" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3>Delete Item</h3>
-            <p>Are you sure you want to delete "{itemToDelete.name}"?</p>
-            <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
-              <button onClick={() => HandleDelete(itemToDelete)}>Yes, Delete</button>
-              <button onClick={HandleCancelDelete}>Cancel</button>
-            </div>
-          </div>
-        </div>
+        <DeleteModal 
+        onClose={()=>HandleCancelDelete()}
+        onConfirmDelete={()=>{HandleDelete(itemToDelete)}}
+        />   
+      
       )}
       </ContentContainer>
     </ContentContainer>
