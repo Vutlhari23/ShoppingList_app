@@ -17,6 +17,8 @@ const {listId} = useParams();
 const [shoppingList,setShoppingList]= useState<Item[]>([]);
 const [errorMessage,setErrorMessage]= useState("");
 const [showAddModal,setShowAddModal] =useState(false);
+const [showEditModal, setShowEditModal] = useState<boolean>(false);
+const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 //{Req1}Fetch items of the current list
 
 const fetchItems = async () => {
@@ -87,6 +89,39 @@ const addItem = async (itemToAdd : NewItem) => {
 
    }
 };
+
+//{Req3} Update an item
+ const updateItem = async (itemId: string, ItemToUpdate: Partial<Item>) => {
+    try {
+      const response = await fetch(`${API_URL}/items/${itemId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          ...authHeaders(),
+        },
+        body: JSON.stringify(ItemToUpdate),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update item");
+      }
+
+      let updatedItem : Item;
+      updatedItem = await response.json();
+
+      setShoppingList((previousList) =>
+        previousList.map((item) =>
+          item.id === itemId ? updatedItem : item
+        )
+      );
+
+      setShowEditModal(false);
+      setSelectedItem(null);
+    } catch (error) {
+      console.error("Failed to update item:", error);
+      setErrorMessage("Couldn't save your changes. Please try again.");
+    }
+  };
 
 
 
