@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { API_URL } from "../../api/api";
 import type { ShoppingList } from "../../type";
@@ -15,6 +16,7 @@ export const ShoppingLists = () => {
 
   const current_user_id = "1";
 
+  const navigate = useNavigate();
   const fetchShoppinfLists = async () => {
     setIsLoading(true);
     setErrorMessage("");
@@ -68,6 +70,56 @@ export const ShoppingLists = () => {
       console.error("Failed to add a  shopping list", error);
       setErrorMessage("Couldn't create the  list. Please try again");
     }
+  };
+  //
+
+  const deleteShoppingList = async (listId: string) => {
+    try {
+      const itemsResponse = await fetch(
+        `${API_URL}/items?listId=${listId}`
+      );
+
+      if (!itemsResponse.ok) {
+        throw new Error("Failed to fetch items for list");
+      }
+
+      const items: { id: string }[] = await itemsResponse.json();
+
+      for (const item of items) {
+        const deleteItem = await fetch(
+          `${API_URL}/items/${item.id}`,
+          {
+            method: "DELETE",
+         
+          }
+        );
+
+        if (!deleteItem.ok) {
+          throw new Error(`Failed to delete item ${item.id}`);
+        }
+      }
+
+      const response = await fetch(`${API_URL}/shoppingLists/${listId}`, {
+        method: "DELETE",
+     
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete shopping list");
+      }
+
+      setShoppingLists((prev) => prev.filter((list) => list.id !== listId));
+    } catch (error) {
+      console.error("Error deleting shopping list:", error);
+      setErrorMessage(
+        "Couldn't delete that list. Some items may not have been removed — please try again."
+      );
+    }
+  };
+
+
+  const viewShoppingList = (listId: string) => {
+    navigate(`/shopping-list/${listId}`);
   };
 
   return (

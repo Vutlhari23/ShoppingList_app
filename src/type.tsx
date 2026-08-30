@@ -1,12 +1,14 @@
- export interface Item {
+export type Item = {
   id: string;
   listId: string;
-  createdAt: string;
   name: string;
   quantity: number;
-  category: string;
   notes?: string;
-}
+  category: string;
+  image?: string;
+  createdAt: string;
+};
+
 export interface ShoppingList {
   id: string;
   userId: string;
