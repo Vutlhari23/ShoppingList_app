@@ -1,81 +1,78 @@
 {
   "users": [
     {
-      "id": 1,
-      "email": "vutlhari23m@gmail.com",
-      "password": "vutlhari@23D",
-      "name": "Vu Maswa"
+      "id": "1",
+      "email": "jane.doe@example.com",
+      "password": "$2a$10$examplehashedpasswordstring1234567890",
+      "name": "Jane",
+      "surname": "Doe",
+      "cellNumber": "0821234567"
     },
     {
-      "email": "vutlhari2m@gmail.com",
-      "password": "$2a$10$vl/HS6NhHo0QlAgO8pTNi.qpSaaAMR8DvUXAuE3R6r6AGyJlWydaa",
-      "id": 2
+      "id": "2",
+      "email": "john.smith@example.com",
+      "password": "$2a$10$examplehashedpasswordstring0987654321",
+      "name": "John",
+      "surname": "Smith",
+      "cellNumber": "0739876543"
     }
   ],
-  "grocery": [
+  "shoppingLists": [
     {
-      "name": "Dove Soapwrw",
-      "id": "-WRQsru"
+      "id": "1",
+      "userId": "1",
+      "name": "Weekly Groceries",
+      "createdAt": "2026-08-20T09:00:00.000Z"
     },
     {
-      "name": "fgfgf",
-      "id": "BNAcp3G"
+      "id": "2",
+      "userId": "1",
+      "name": "Braai Supplies",
+      "createdAt": "2026-08-22T14:30:00.000Z"
     },
     {
-      "name": "fgfgfg",
-      "id": "572vZPa"
-    },
-    {
-      "name": "fgf",
-      "id": "ugR_lYt"
-    },
-    {
-      "name": "gfgf",
-      "id": "0YOHQ9S"
-    },
-    {
-      "name": "gfgf",
-      "id": "hKnhby8"
-    },
-    {
-      "name": "fgfgf",
-      "id": "KH3dAfJ"
-    },
-    {
-      "name": "safsf",
-      "id": "odx0N1L"
+      "id": "3",
+      "userId": "2",
+      "name": "Household Restock",
+      "createdAt": "2026-08-24T11:15:00.000Z"
     }
   ],
-  "people": [
+  "items": [
     {
-      "name": "Amukelani",
-      "surname": "Machete",
-      "email": "a@gamil.com",
-      "password": "1234",
-      "CellNo": "0634231555",
-      "id": "uTlu9JyBpSE"
+      "id": "4",
+      "listId": "2",
+      "name": "Boerewors",
+      "quantity": 2,
+      "notes": "1kg packs",
+      "category": "meat",
+      "image": "https://example.com/images/boerewors.jpg"
     },
     {
-      "name": "hlamulo",
-      "surname": "Machete",
-      "email": "a@gamil.com",
-      "password": "12",
-      "CellNo": "0634231555",
-      "id": "tW4VLwHoZew"
+      "id": "5",
+      "listId": "2",
+      "name": "Charcoal",
+      "quantity": 1,
+      "notes": "",
+      "category": "household",
+      "image": "https://example.com/images/charcoal.jpg"
     },
     {
-      "name": "Sicelo",
-      "surname": "Machete",
-      "email": "a@gamil.com",
-      "password": "8422",
-      "CellNo": "0634231555",
-      "id": "iKYC13p655o"
+      "id": "6",
+      "listId": "3",
+      "name": "Dish Soap",
+      "quantity": 3,
+      "notes": "Lemon scent",
+      "category": "household",
+      "image": "https://example.com/images/dish-soap.jpg"
     },
     {
-      "username": "Amukelani",
-      "password": "1234",
-      "id": "jb-JFD1YtEY"
+      "id": "7",
+      "listId": "3",
+      "name": "Toilet Paper",
+      "quantity": 1,
+      "notes": "9-pack",
+      "category": "personal",
+      "image": "https://example.com/images/toilet-paper.jpg"
     }
   ]
-
 }
