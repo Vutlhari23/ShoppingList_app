@@ -122,6 +122,32 @@ const addItem = async (itemToAdd : NewItem) => {
       setErrorMessage("Couldn't save your changes. Please try again.");
     }
   };
+//{Req4}
+  const deleteItem = async (itemId: string) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/items/${itemId}`, {
+        method: "DELETE",
+        headers: authHeaders(),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete item");
+      }
+
+      setShoppingList((prev) => prev.filter((item) => item.id !== itemId));
+    } catch (error) {
+      console.error("Failed to delete item:", error);
+      setErrorMessage("Couldn't delete that item. Please try again.");
+    }
+  };
 
 
 
