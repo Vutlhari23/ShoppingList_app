@@ -15,6 +15,7 @@ export const ShoppingLists = () => {
 
   const current_user_id = "1";
 
+
   const fetchShoppinfLists = async () => {
     setIsLoading(true);
     setErrorMessage("");
@@ -37,6 +38,9 @@ export const ShoppingLists = () => {
       setIsLoading(false);
     }
   };
+  useEffect (()=> {
+    fetchShoppinfLists();
+  })
 
   return (
     <>
