@@ -4,6 +4,7 @@ import { Login } from './pages/Login/Login';
 import { Register } from './pages/Register/Register';
 import { Profile } from './pages/Profile/Profile';
 import { Home } from './pages/Home/Home';
+import { ShoppingLists } from '../src/pages/Home/ShoppingList';
 import {
   ProtectedRoute,
   PublicOnlyRoute,
@@ -22,6 +23,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/shoppinglist" element={<ShoppingLists />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/home" replace />} />

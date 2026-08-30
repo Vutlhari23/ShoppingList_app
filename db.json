@@ -56,14 +56,26 @@
       "surname": "M",
       "cellNo": "1234",
       "id": 8
+    },
+    {
+      "email": "r@gmail.com",
+      "password": "$2a$10$IC5xQ4iz7/.l17FLp9D7SOAspY3SsNV.WjvPrYqGi0rltMvoRBjBa",
+      "name": "Respect",
+      "surname": "Masola",
+      "cellNo": "0798241382",
+      "id": 9
     }
   ],
-  "grocery": [
+  "shoppingLists": [
     {
-      "name": "Dove Soapwrw",
-      "id": "-WRQsru",
-      "createdBy": "m@gmail.com"
-    },
+      "userId": "5",
+      "name": "xcxc",
+      "createdAt": "2026-08-30T19:19:11.087Z",
+      "id": 4
+    }
+  ],
+  "items": [],
+  "grocery": [
     {
       "name": "fgfgf",
       "id": "BNAcp3G",
@@ -93,9 +105,39 @@
       "id": "rjq0lwH"
     },
     {
-      "name": "LIIII",
+      "name": "fgfgfgf",
+      "createdBy": "r@gmail.com",
+      "id": "nr72t9O"
+    },
+    {
+      "name": "ffgfgfgf",
+      "createdBy": "r@gmail.com",
+      "id": "-Lfyb3A"
+    },
+    {
+      "name": "sdsds",
       "createdBy": "m@gmail.com",
-      "id": "4rtVkM5"
+      "id": "v1l6mHi"
+    },
+    {
+      "name": "sdsds",
+      "createdBy": "m@gmail.com",
+      "id": "8gXa9zJ"
+    },
+    {
+      "name": "dfgf",
+      "createdBy": "m@gmail.com",
+      "id": "2FNPCV2"
+    },
+    {
+      "name": "fff",
+      "createdBy": "m@gmail.com",
+      "id": "OIK3PqS"
+    },
+    {
+      "name": "sdsd",
+      "createdBy": "m@gmail.com",
+      "id": "m8o7iR_"
     }
   ],
   "people": [

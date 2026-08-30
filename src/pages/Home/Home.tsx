@@ -5,11 +5,12 @@ import { Navbar } from '../../components/Navbar/Navbar';
 import { AddItem } from '../../components/Modals/AddItem';
 import DeleteModal from '../../components/Modals/DeleteModal';
 import { apiFetch } from '../../lib/api';
+import { getCurrentUser } from '../../lib/auth';
 
 interface Item {
   id: string;
   name: string;
-  createdBy: string | null ;
+  createdBy: string | null;
 }
 
 export const Home = () => {
@@ -19,9 +20,23 @@ export const Home = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
   const [error, setError] = useState('');
 
+  const currentUser = getCurrentUser();
+
   useEffect(() => {
-    apiFetch<Item[]>(`/grocery?createdBy=${localStorage.getItem("email")}`)
-      .then((data) => setShoppingList(data))
+    if (!currentUser) {
+      setError('Could not verify your login. Please log in again.');
+      return;
+    }
+
+    apiFetch<Item[]>(`/grocery?createdBy=${encodeURIComponent(currentUser.email)}`)
+      .then((data) => {
+        // Belt-and-braces client-side filter — json-server's query filter
+        // can be case/whitespace sensitive, so don't rely on it alone.
+        const mine = data.filter(
+          (item) => item.createdBy?.toLowerCase().trim() === currentUser.email.toLowerCase().trim()
+        );
+        setShoppingList(mine);
+      })
       .catch((err) => {
         console.error('Error fetching data:', err);
         setError('Could not load shopping list. Please log in again.');
@@ -39,11 +54,11 @@ export const Home = () => {
     return apiFetch(`/grocery/${id}`, { method: 'DELETE' });
   };
 
-  const addItem = async (itemName: string,createdBy: string | null) => {
-    if (!itemName.trim()) return;
+  const addItem = async (itemName: string) => {
+    if (!itemName.trim() || !currentUser) return;
 
     try {
-      const newItem = await postData({ name: itemName, createdBy: createdBy});
+      const newItem = await postData({ name: itemName, createdBy: currentUser.email });
       setShoppingList((prev) => [...prev, newItem]);
     } catch (err) {
       console.error('Failed to add item into the database.', err);
@@ -54,9 +69,7 @@ export const Home = () => {
   const HandleDelete = async (itemToRemove: Item) => {
     try {
       await deleteItem(itemToRemove.id);
-      setShoppingList((prev) =>
-        prev.filter((item) => item.id !== itemToRemove.id)
-      );
+      setShoppingList((prev) => prev.filter((item) => item.id !== itemToRemove.id));
     } catch (err) {
       console.error('Failed to delete item from json-server:', err);
       setError('Failed to delete item.');
@@ -65,9 +78,7 @@ export const Home = () => {
     }
   };
 
-  const HandleCancelDelete = () => {
-    setItemToDelete(null);
-  };
+  const HandleCancelDelete = () => setItemToDelete(null);
 
   const sortedList = [...shoppingList].sort((a, b) => {
     if (sortOrder === 'asc') return a.name.localeCompare(b.name);
@@ -83,6 +94,7 @@ export const Home = () => {
 
       <ContentContainer className={styles['home-content']}>
         <h1>My Shopping List</h1>
+        {currentUser && <p>Logged in as {currentUser.name ?? currentUser.email}</p>}
 
         {error && <p style={{ color: 'crimson' }}>{error}</p>}
 
@@ -95,9 +107,7 @@ export const Home = () => {
           <select
             id="sortSelect"
             value={sortOrder}
-            onChange={(e) =>
-              setSortOrder(e.target.value as 'asc' | 'desc' | '')
-            }
+            onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc' | '')}
           >
             <option value="">Default order</option>
             <option value="asc">ascending</option>
@@ -126,7 +136,7 @@ export const Home = () => {
           <AddItem
             onClose={() => setShowAddModal(false)}
             onSubmit={async (newItem) => {
-              await addItem(newItem.name, localStorage.getItem("email"));
+              await addItem(newItem.name);
               setShowAddModal(false);
             }}
           />
@@ -134,10 +144,8 @@ export const Home = () => {
 
         {itemToDelete !== null && (
           <DeleteModal
-            onClose={() => HandleCancelDelete()}
-            onConfirmDelete={() => {
-              HandleDelete(itemToDelete);
-            }}
+            onClose={HandleCancelDelete}
+            onConfirmDelete={() => HandleDelete(itemToDelete)}
           />
         )}
       </ContentContainer>
