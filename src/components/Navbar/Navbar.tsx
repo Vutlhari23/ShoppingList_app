@@ -22,6 +22,9 @@ export const Navbar = () => {
       <Link to="/profile" className={styles.link}>
         Profile
       </Link>
+       <Link to="/shoppinglist" className={styles.link}>
+        My lists
+      </Link>
       <button type="button" className={styles.link} onClick={handleLogout}>
         Logout
       </button>

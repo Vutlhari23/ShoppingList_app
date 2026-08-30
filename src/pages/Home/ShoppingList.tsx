@@ -7,6 +7,7 @@ import { Button } from "../../components/Button/Button";
 import { Text } from "../../components/Text/Text";
 import { ContentContainer } from "../../components/ContentContainer/ContentContainer";
 import styles from "./ShoppingLists.module.css";
+import {Navbar} from '../../components/Navbar/Navbar'
 
 const authHeaders = () => ({
   Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -125,6 +126,11 @@ export const ShoppingLists = () => {
 
   return (
     <>
+    <ContentContainer className={styles['home-page']} >
+     <ContentContainer className={styles['sidebar']}>
+        <Navbar />
+      </ContentContainer>
+      <ContentContainer className={styles.content}>
       <ContentContainer className={styles.header}>
         <ContentContainer>
           <Text variant="caption" className={styles.eyebrow}>
@@ -172,6 +178,8 @@ export const ShoppingLists = () => {
           </ContentContainer>
         ))
       )}
+      </ContentContainer>
+      </ContentContainer>
     </>
   );
 };

@@ -1,0 +1,82 @@
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.createRow {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0 28px;
+}
+
+.createRow input {
+  flex: 1;
+}
+
+.empty {
+  border: 1.5px dashed var(--line-dashed);
+  border-radius: var(--radius);
+  padding: 36px 20px;
+  text-align: center;
+}
+
+.listCard {
+  background: var(--paper-raised);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.listInfo h2 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.listMeta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.listActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.errorBanner {
+  background: rgba(184, 73, 46, 0.1);
+  border: 1px solid var(--brick);
+  color: var(--brick);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.home-page{
+  display: flex;
+  height: 100vh;
+
+
+}
+.sidebar{
+    width: 15rem;
+    height: 100vh;
+   border: 1px solid lightgray;
+}
+.content{
+padding-left : 10px;
+}
