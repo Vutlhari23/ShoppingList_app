@@ -9,12 +9,11 @@ import { ContentContainer } from "../../components/ContentContainer/ContentConta
 
 export const ShoppingLists = () => {
   const [shoppingLists, setShoppingLists] = useState<ShoppingList[]>([]);
-  const [listname, setListName] = useState("");
+  const [listName, setListName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const current_user_id = "1";
-
 
   const fetchShoppinfLists = async () => {
     setIsLoading(true);
@@ -38,9 +37,38 @@ export const ShoppingLists = () => {
       setIsLoading(false);
     }
   };
-  useEffect (()=> {
+  useEffect(() => {
     fetchShoppinfLists();
-  })
+  });
+
+  //{Reg2: Add a list}
+  const addShoppingList = async () => {
+    if (!listName.trim()) return;
+
+    const newListObject = {
+      userId: current_user_id,
+      name: listName,
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch(`${API_URL}/shoppingLists`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newListObject),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to created a shoppinglist");
+      }
+      const createdList: ShoppingList = await response.json();
+      setShoppingLists((previousList) => [...previousList, createdList]);
+      setListName("");
+    } catch (error) {
+      console.error("Failed to add a  shopping list", error);
+      setErrorMessage("Couldn't create the  list. Please try again");
+    }
+  };
 
   return (
     <>
@@ -70,6 +98,23 @@ export const ShoppingLists = () => {
           </ContentContainer>;
         })
       )}
+
+      <ContentContainer>
+        <input
+          type="text"
+          placeholder="e.g. Weekly Groceries"
+          value={listName}
+          onChange={(e) => {
+            setListName(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              addShoppingList();
+            }
+          }}
+        />
+        <Button label="Create list" onClick={addShoppingList} />
+      </ContentContainer>
     </>
   );
 };
