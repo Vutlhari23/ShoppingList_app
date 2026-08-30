@@ -1,189 +1,146 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import type { Item } from '../../type';
-import { API_URL } from '../../api/api';
+import { useEffect, useState } from 'react';
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
-import type { NewItem } from '../../components/Modals/AddItem';
+import styles from '../Home/Home.module.css';
+import { Navbar } from '../../components/Navbar/Navbar';
+import { AddItem } from '../../components/Modals/AddItem';
+import DeleteModal from '../../components/Modals/DeleteModal';
+import { apiFetch } from '../../lib/api';
 
-
-
-export const Home = () => {
-
-const authHeaders = () => ({
-  Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-});
-
-const {listId} = useParams();
-const [shoppingList,setShoppingList]= useState<Item[]>([]);
-const [errorMessage,setErrorMessage]= useState("");
-const [showAddModal,setShowAddModal] =useState(false);
-const [showEditModal, setShowEditModal] = useState<boolean>(false);
-const [selectedItem, setSelectedItem] = useState<Item | null>(null);
-//{Req1}Fetch items of the current list
-
-const fetchItems = async () => {
-  if(!listId){
-    return;
-  }
-  setErrorMessage("");
-
-  try{
-    const response = await fetch(`${API_URL}/items?listId=${listId}`,
-      {headers : authHeaders()});
-      if(!response.ok){
-        throw new Error ("Failes to fetch items");
-
-      }
-      let data : Item[];
-      data = await response.json();
-      setShoppingList(data); // the array of list now saved in a state variable
-
-  }catch(error){
-    console.error("Error fetching list of items:",error);
-    setErrorMessage("Couldn't load items for this list. Check if the server is running and try again.");
-
-  }
-};
-
-useEffect (()=> {fetchItems()},[listId]);
-
-//{Req2}
-
-const addItem = async (itemToAdd : NewItem) => {
-  if(!itemToAdd.name.trim()){
-    return;
-  }
-   if (!listId){
-    console.error("No shopping list selected.");
-    return;
-   }
-
-   const itemObjectToAdd= {
-    ...itemToAdd,
-    listId,
-    createdAt : new Date().toISOString(),
-
-   }
-
-   try {
-
-    const response = await fetch(`${API_URL}/items`,
-      {method : "POST",
-      headers: {"Content-Type": "application/json", ...authHeaders},
-      body : JSON.stringify(itemObjectToAdd),
-});
-  if (!response.ok) {
-        throw new Error("Failed to add item");
-      }
-
-      let newItem : Item;
-      newItem =await response.json();
-
-      setShoppingList((previousList)=> [...previousList, newItem]);
-      setShowAddModal(false);
-
-
-   }catch(error){
-    console.error("Failed to add item:" , error);
-    setErrorMessage("Couldn't add the item. Please try again.");
-
-   }
-};
-
-//{Req3} Update an item
- const updateItem = async (itemId: string, ItemToUpdate: Partial<Item>) => {
-    try {
-      const response = await fetch(`${API_URL}/items/${itemId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          ...authHeaders(),
-        },
-        body: JSON.stringify(ItemToUpdate),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update item");
-      }
-
-      let updatedItem : Item;
-      updatedItem = await response.json();
-
-      setShoppingList((previousList) =>
-        previousList.map((item) =>
-          item.id === itemId ? updatedItem : item
-        )
-      );
-
-      setShowEditModal(false);
-      setSelectedItem(null);
-    } catch (error) {
-      console.error("Failed to update item:", error);
-      setErrorMessage("Couldn't save your changes. Please try again.");
-    }
-  };
-//{Req4}
-  const deleteItem = async (itemId: string) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this item?"
-    );
-
-    if (!confirmDelete) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`${API_URL}/items/${itemId}`, {
-        method: "DELETE",
-        headers: authHeaders(),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete item");
-      }
-
-      setShoppingList((prev) => prev.filter((item) => item.id !== itemId));
-    } catch (error) {
-      console.error("Failed to delete item:", error);
-      setErrorMessage("Couldn't delete that item. Please try again.");
-    }
-  };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  return (
-<>
-</>
-
-  )
+interface Item {
+  id: string;
+  name: string;
+  createdBy: string | null ;
 }
 
+export const Home = () => {
+  const [shoppingList, setShoppingList] = useState<Item[]>([]);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<Item | null>(null);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    apiFetch<Item[]>(`/grocery?createdBy=${localStorage.getItem("email")}`)
+      .then((data) => setShoppingList(data))
+      .catch((err) => {
+        console.error('Error fetching data:', err);
+        setError('Could not load shopping list. Please log in again.');
+      });
+  }, []);
+
+  const postData = async (data: Partial<Item>) => {
+    return apiFetch<Item>('/grocery', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  };
+
+  const deleteItem = async (id: string) => {
+    return apiFetch(`/grocery/${id}`, { method: 'DELETE' });
+  };
+
+  const addItem = async (itemName: string,createdBy: string | null) => {
+    if (!itemName.trim()) return;
+
+    try {
+      const newItem = await postData({ name: itemName, createdBy: createdBy});
+      setShoppingList((prev) => [...prev, newItem]);
+    } catch (err) {
+      console.error('Failed to add item into the database.', err);
+      setError('Failed to add item.');
+    }
+  };
+
+  const HandleDelete = async (itemToRemove: Item) => {
+    try {
+      await deleteItem(itemToRemove.id);
+      setShoppingList((prev) =>
+        prev.filter((item) => item.id !== itemToRemove.id)
+      );
+    } catch (err) {
+      console.error('Failed to delete item from json-server:', err);
+      setError('Failed to delete item.');
+    } finally {
+      setItemToDelete(null);
+    }
+  };
+
+  const HandleCancelDelete = () => {
+    setItemToDelete(null);
+  };
+
+  const sortedList = [...shoppingList].sort((a, b) => {
+    if (sortOrder === 'asc') return a.name.localeCompare(b.name);
+    if (sortOrder === 'desc') return b.name.localeCompare(a.name);
+    return 0;
+  });
+
+  return (
+    <ContentContainer className={styles['home-page']}>
+      <ContentContainer className={styles['sidebar']}>
+        <Navbar />
+      </ContentContainer>
+
+      <ContentContainer className={styles['home-content']}>
+        <h1>My Shopping List</h1>
+
+        {error && <p style={{ color: 'crimson' }}>{error}</p>}
+
+        <button type="button" onClick={() => setShowAddModal(true)}>
+          Add new item
+        </button>
+
+        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+          <label htmlFor="sortSelect">Sort by name: </label>
+          <select
+            id="sortSelect"
+            value={sortOrder}
+            onChange={(e) =>
+              setSortOrder(e.target.value as 'asc' | 'desc' | '')
+            }
+          >
+            <option value="">Default order</option>
+            <option value="asc">ascending</option>
+            <option value="desc">descending</option>
+          </select>
+        </div>
+
+        {sortedList.map((item) => (
+          <div
+            key={item.id}
+            style={{
+              backgroundColor: 'lightgray',
+              marginBottom: '10px',
+              display: 'flex',
+              gap: '10px',
+              alignItems: 'center',
+            }}
+          >
+            <input type="radio" />
+            <h6>{item.name}</h6>
+            <button onClick={() => setItemToDelete(item)}>Delete</button>
+          </div>
+        ))}
+
+        {showAddModal && (
+          <AddItem
+            onClose={() => setShowAddModal(false)}
+            onSubmit={async (newItem) => {
+              await addItem(newItem.name, localStorage.getItem("email"));
+              setShowAddModal(false);
+            }}
+          />
+        )}
+
+        {itemToDelete !== null && (
+          <DeleteModal
+            onClose={() => HandleCancelDelete()}
+            onConfirmDelete={() => {
+              HandleDelete(itemToDelete);
+            }}
+          />
+        )}
+      </ContentContainer>
+    </ContentContainer>
+  );
+};

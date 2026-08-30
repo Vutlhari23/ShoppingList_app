@@ -1,78 +1,136 @@
 {
   "users": [
     {
-      "id": "1",
-      "email": "jane.doe@example.com",
-      "password": "$2a$10$examplehashedpasswordstring1234567890",
-      "name": "Jane",
-      "surname": "Doe",
-      "cellNumber": "0821234567"
+      "id": 1,
+      "email": "vutlhari23m@gmail.com",
+      "password": "vutlhari@23D",
+      "name": "Vu Maswa"
     },
     {
-      "id": "2",
-      "email": "john.smith@example.com",
-      "password": "$2a$10$examplehashedpasswordstring0987654321",
-      "name": "John",
-      "surname": "Smith",
-      "cellNumber": "0739876543"
+      "email": "vutlhari2m@gmail.com",
+      "password": "$2a$10$vl/HS6NhHo0QlAgO8pTNi.qpSaaAMR8DvUXAuE3R6r6AGyJlWydaa",
+      "id": 2
+    },
+    {
+      "email": "testauth@example.com",
+      "password": "$2a$10$fCX81SUqJSzafY4VQpwbnuj2Ybn0xvyRCHa4iwy6uSfhN/FCUivxW",
+      "name": "Test",
+      "id": 3
+    },
+    {
+      "email": "sambo@gmail.com",
+      "password": "$2a$10$f2oGAWNV5oDqlETRJ9Vf8eGXJ3BE47GhiVkgGiu8V7LKBqyfX3Tja",
+      "name": "sicelo",
+      "surname": "sambo",
+      "cellNo": "0763951934",
+      "id": 4
+    },
+    {
+      "email": "v@gmail.com",
+      "password": "$2a$10$bi1ZWwYwLWnvWXrSRZScfuPz3kG6qljEK76nusJgQSGFYRa1VYqXK",
+      "name": "Vutlhari",
+      "surname": "Maswanganyi",
+      "cellNo": "0798241382",
+      "id": 5
+    },
+    {
+      "email": "a@gmail.com",
+      "password": "$2a$10$mup.E.YYbO5CbKV4ougb9uWdx5knQiTgX0ciy98qidrICx.Py8RyG",
+      "name": "Amu",
+      "surname": "M",
+      "cellNo": "1234",
+      "id": 6
+    },
+    {
+      "email": "b@gmail.com",
+      "password": "$2a$10$NnVgTs3j6U8rlNject1rW.5YwlL6835pd8Czqe44YhWk.WGfIG9RO",
+      "name": "Bless",
+      "surname": "m",
+      "cellNo": "1234",
+      "id": 7
+    },
+    {
+      "email": "m@gmail.com",
+      "password": "$2a$10$KULYmqW1774z9p04qJhMY./1pVDH4i9dDh0XnCCAGHj/gRmYwp7f6",
+      "name": "Vutlhari",
+      "surname": "M",
+      "cellNo": "1234",
+      "id": 8
     }
   ],
-  "shoppingLists": [
+  "grocery": [
     {
-      "id": "1",
-      "userId": "1",
-      "name": "Weekly Groceries",
-      "createdAt": "2026-08-20T09:00:00.000Z"
+      "name": "Dove Soapwrw",
+      "id": "-WRQsru",
+      "createdBy": "m@gmail.com"
     },
     {
-      "id": "2",
-      "userId": "1",
-      "name": "Braai Supplies",
-      "createdAt": "2026-08-22T14:30:00.000Z"
+      "name": "fgfgf",
+      "id": "BNAcp3G",
+      "createdBy": "v@gmail.com"
     },
     {
-      "id": "3",
-      "userId": "2",
-      "name": "Household Restock",
-      "createdAt": "2026-08-24T11:15:00.000Z"
+      "name": "gfgf",
+      "id": "0YOHQ9S",
+      "createdBy": "v@gmail.com"
+    },
+    {
+      "name": "gfgf",
+      "id": "hKnhby8",
+      "createdBy": "b@gmail.com"
+    },
+    {
+      "name": "Auth Test Milk",
+      "id": "PaFNqIA",
+      "createdBy": "b@gmail.com"
+    },
+    {
+      "name": "gggg",
+      "id": "Grgd5IX"
+    },
+    {
+      "name": "gggggggg",
+      "id": "rjq0lwH"
+    },
+    {
+      "name": "LIIII",
+      "createdBy": "m@gmail.com",
+      "id": "4rtVkM5"
     }
   ],
-  "items": [
+  "people": [
     {
-      "id": "4",
-      "listId": "2",
-      "name": "Boerewors",
-      "quantity": 2,
-      "notes": "1kg packs",
-      "category": "meat",
-      "image": "https://example.com/images/boerewors.jpg"
+      "name": "Amukelani",
+      "surname": "Machete",
+      "email": "a@gamil.com",
+      "password": "1234",
+      "CellNo": "0634231555",
+      "id": "uTlu9JyBpSE",
+      "createdBy": "m@gmail.com"
     },
     {
-      "id": "5",
-      "listId": "2",
-      "name": "Charcoal",
-      "quantity": 1,
-      "notes": "",
-      "category": "household",
-      "image": "https://example.com/images/charcoal.jpg"
+      "name": "hlamulo",
+      "surname": "Machete",
+      "email": "a@gamil.com",
+      "password": "12",
+      "CellNo": "0634231555",
+      "id": "tW4VLwHoZew",
+      "createdBy": "v@gmail.com"
     },
     {
-      "id": "6",
-      "listId": "3",
-      "name": "Dish Soap",
-      "quantity": 3,
-      "notes": "Lemon scent",
-      "category": "household",
-      "image": "https://example.com/images/dish-soap.jpg"
+      "name": "Sicelo",
+      "surname": "Machete",
+      "email": "a@gamil.com",
+      "password": "8422",
+      "CellNo": "0634231555",
+      "id": "iKYC13p655o",
+      "createdBy": "m@gmail.com"
     },
     {
-      "id": "7",
-      "listId": "3",
-      "name": "Toilet Paper",
-      "quantity": 1,
-      "notes": "9-pack",
-      "category": "personal",
-      "image": "https://example.com/images/toilet-paper.jpg"
+      "username": "Amukelani",
+      "password": "1234",
+      "id": "jb-JFD1YtEY",
+      "createdBy": "m@gmail.com"
     }
   ]
 }
