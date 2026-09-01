@@ -113,21 +113,60 @@
       "quantity": 2,
       "shoppingListId": "7",
       "category": "Groceries"
-    }
-    ,
-     {
+    },
+    {
       "id": "4",
       "name": "Eggs",
       "quantity": 2,
       "shoppingListId": "8",
       "category": "Groceries"
     },
-     {
+    {
       "id": "5",
       "name": "Eggs",
       "quantity": 2,
       "shoppingListId": "8",
       "category": "Groceries"
+    },
+    {
+      "name": "Vinegar",
+      "category": "Beverages",
+      "quantity": 3,
+      "shoppingListId": "6",
+      "createdAt": "2026-09-01T18:19:42.750Z",
+      "id": "Y7hb-r2"
+    },
+    {
+      "name": "Vinegar",
+      "category": "Beverages",
+      "quantity": 3,
+      "shoppingListId": "6",
+      "createdAt": "2026-09-01T18:19:44.642Z",
+      "id": "SV84TKk"
+    },
+    {
+      "name": "Vinegar",
+      "category": "Beverages",
+      "quantity": 3,
+      "shoppingListId": "6",
+      "createdAt": "2026-09-01T18:19:45.403Z",
+      "id": "9qQNQ62"
+    },
+    {
+      "name": "Vinegar",
+      "category": "Beverages",
+      "quantity": 3,
+      "shoppingListId": "6",
+      "createdAt": "2026-09-01T18:19:45.996Z",
+      "id": "w5LuBAE"
+    },
+    {
+      "name": "Vinegar",
+      "category": "Beverages",
+      "quantity": 3,
+      "shoppingListId": "6",
+      "createdAt": "2026-09-01T18:19:46.613Z",
+      "id": "nXdDs-f"
     }
   ],
   "people": [
