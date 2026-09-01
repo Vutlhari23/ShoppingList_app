@@ -21,12 +21,12 @@ function App() {
       </Route>
 
       <Route element={<ProtectedRoute />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/home/:listId" element={<Home />} />
         <Route path="/shoppinglist" element={<ShoppingLists />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
-      <Route path="*" element={<Navigate to="/home" replace />} />
+      <Route path="*" element={<Navigate to="/shoppinglist" replace />} />
     </Routes>
   );
 }

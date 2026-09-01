@@ -68,82 +68,66 @@
   ],
   "shoppingLists": [
     {
-      "userId": "5",
-      "name": "xcxc",
-      "createdAt": "2026-08-30T19:19:11.087Z",
-      "id": 4
+      "userId": "8",
+      "name": "my list",
+      "createdAt": "2026-08-30T23:40:02.323Z",
+      "id": 5
     },
     {
-      "userId": "8",
-      "name": "Vutlhari",
-      "createdAt": "2026-08-30T19:42:01.700Z",
-      "id": 5
+      "userId": "5",
+      "name": "Braai List",
+      "createdAt": "2026-09-01T13:17:22.118Z",
+      "id": 6
+    },
+    {
+      "userId": "5",
+      "name": "September Toiletries",
+      "createdAt": "2026-09-01T13:35:29.851Z",
+      "id": 7
+    },
+    {
+      "userId": "5",
+      "name": "My perfect List",
+      "createdAt": "2026-09-01T14:45:58.463Z",
+      "id": 8
     }
   ],
-  "items": [],
-  "grocery": [
+  "items": [
     {
-      "name": "fgfgf",
-      "id": "BNAcp3G",
-      "createdBy": "v@gmail.com"
+      "id": "1",
+      "name": "Milk",
+      "quantity": 1,
+      "shoppingListId": "6",
+      "category": "Groceries"
     },
     {
-      "name": "gfgf",
-      "id": "0YOHQ9S",
-      "createdBy": "v@gmail.com"
+      "id": "2",
+      "name": "Bread",
+      "quantity": 2,
+      "shoppingListId": "6",
+      "category": "Groceries"
     },
     {
-      "name": "gfgf",
-      "id": "hKnhby8",
-      "createdBy": "b@gmail.com"
+      "id": "3",
+      "name": "Eggs",
+      "quantity": 2,
+      "shoppingListId": "7",
+      "category": "Groceries"
+    }
+    ,
+     {
+      "id": "4",
+      "name": "Eggs",
+      "quantity": 2,
+      "shoppingListId": "8",
+      "category": "Groceries"
     },
-    {
-      "name": "Auth Test Milk",
-      "id": "PaFNqIA",
-      "createdBy": "b@gmail.com"
-    },
-    {
-      "name": "gggg",
-      "id": "Grgd5IX"
-    },
-    {
-      "name": "gggggggg",
-      "id": "rjq0lwH"
-    },
-    {
-      "name": "fgfgfgf",
-      "createdBy": "r@gmail.com",
-      "id": "nr72t9O"
-    },
-    {
-      "name": "ffgfgfgf",
-      "createdBy": "r@gmail.com",
-      "id": "-Lfyb3A"
-    },
-    {
-      "name": "sdsds",
-      "createdBy": "m@gmail.com",
-      "id": "v1l6mHi"
-    },
-    {
-      "name": "sdsds",
-      "createdBy": "m@gmail.com",
-      "id": "8gXa9zJ"
-    },
-    {
-      "name": "dfgf",
-      "createdBy": "m@gmail.com",
-      "id": "2FNPCV2"
-    },
-    {
-      "name": "fff",
-      "createdBy": "m@gmail.com",
-      "id": "OIK3PqS"
-    },
-    {
-      "name": "sdsd",
-      "createdBy": "m@gmail.com",
-      "id": "m8o7iR_"
+     {
+      "id": "5",
+      "name": "Eggs",
+      "quantity": 2,
+      "shoppingListId": "8",
+      "category": "Groceries"
     }
   ],
   "people": [

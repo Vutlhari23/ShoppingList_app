@@ -1,5 +1,6 @@
 {
   "users": 600,
-  "grocery": 660,
+    "shoppingLists": 770,
+  "items": 770,
   "people": 660
 }

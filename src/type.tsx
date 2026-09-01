@@ -5,13 +5,17 @@ export interface ShoppingList {
   createdAt: string;
 }
 
-export interface Item {
+export type Item = {
   id: string;
-  listId: string;
+  shoppingListId: string;
   name: string;
-  createdBy: string | null;
-  isChecked?: boolean;
-}
+  quantity: number;
+  notes?: string;
+  category: string;
+  image?: string;
+  createdAt: string;
+  createdBy: string;                           
+};
 
 export interface User {
   id: string;

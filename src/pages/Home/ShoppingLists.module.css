@@ -69,6 +69,8 @@
 .home-page{
   display: flex;
   height: 100vh;
+  overflow-y: hidden;
+
 
 
 }
@@ -79,4 +81,9 @@
 }
 .content{
 padding-left : 10px;
+
+width: 100vw;
+overflow-x: hidden;
+  padding-left:10px ;
+
 }

@@ -121,7 +121,7 @@ export const ShoppingLists = () => {
   };
 
   const viewShoppingList = (listId: string) => {
-    navigate(`/shopping-list/${listId}`);
+    navigate(`/home/${listId}`);
   };
 
   return (

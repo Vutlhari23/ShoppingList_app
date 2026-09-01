@@ -1,20 +1,28 @@
+import type { ButtonHTMLAttributes } from "react";
+import styles from "./Button.module.css";
 
-type ButtonProp ={
-    className?:string,
-    label?: React.ReactNode,
-    onClick ?: () => void,
-}
+type ButtonProps = {
+  label: string;
+  variant?: "default" | "primary" | "danger" | "ghost";
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = ({className,label,onClick}: ButtonProp) => {
-    return(
-      <div>
-          <button 
-            className={className}
-            onClick={onClick}
-          >
-          {label}
-          </button>
-        
-      </div>
-    )
-}
+export const Button = ({
+  label,
+  variant = "default",
+  className,
+  ...rest
+}: ButtonProps) => {
+  const variantClass =
+    variant !== "default" ? styles[variant] : "";
+
+  return (
+    <button
+      className={[styles.button, variantClass, className]
+        .filter(Boolean)
+        .join(" ")}
+      {...rest}
+    >
+      {label}
+    </button>
+  );
+};

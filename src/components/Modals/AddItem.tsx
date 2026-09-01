@@ -16,8 +16,24 @@ export type AddItemProps = {
 
 export const AddItem = ({ onClose, onSubmit }: AddItemProps) => {
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("personal");
   const [quantity, setQuantity] = useState("");
+  const [error, setError] = useState("");
+
+  const handleAdd = () => {
+    // Validation
+    if (!name.trim()) {
+      setError("Item name is required");
+      return;
+    }
+    if (!quantity || Number(quantity) <= 0) {
+      setError("Quantity must be greater than 0");
+      return;
+    }
+
+    setError("");
+    onSubmit({ name, category, quantity });
+  };
 
   return (
     <Overlay onClose={onClose}>
@@ -26,6 +42,8 @@ export const AddItem = ({ onClose, onSubmit }: AddItemProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         <h3>Add new Item</h3>
+
+        {error && <p style={{ color: "crimson", marginBottom: "10px" }}>{error}</p>}
 
         <label>Item name</label>
         <input
@@ -57,12 +75,13 @@ export const AddItem = ({ onClose, onSubmit }: AddItemProps) => {
           type="number"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          min="1"
         />
 
         <div>
           <button
             type="button"
-            onClick={() => onSubmit({ name, category, quantity })}
+            onClick={handleAdd}
           >
             Add
           </button>
