@@ -19,6 +19,7 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import styles from "./ShoppingLists.module.css";
 
 import NoList from "../../assets/no_list.png";
+import DeleteModal from "../../components/Modals/DeleteModal";
 
 const authHeaders = () => ({
   Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -38,6 +39,8 @@ export const ShoppingLists = () => {
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [openConfirmModal,setOpenConfirmModal] = useState(false);
+  const [listToDelete,setListToDelete] = useState("");
 
   const itemsPerPage = 7;
 
@@ -327,12 +330,26 @@ export const ShoppingLists = () => {
 
                   <Button
                     label="Delete"
-                    onClick={() => deleteShoppingList(list.id)}
+                    onClick={() => {
+                      setOpenConfirmModal(true);
+                      setListToDelete(list.id);
+                    }}
+                    
                   />
                 </ContentContainer>
               </ContentContainer>
             ))}
 
+           {openConfirmModal && (
+  <DeleteModal
+    onClose={() => setOpenConfirmModal(false)}
+    onConfirmDelete={async () => {
+      await deleteShoppingList(listToDelete);
+      setOpenConfirmModal(false);
+      setListToDelete("");
+    }}
+  />
+)}
           {!isLoading && shoppingLists.length > 0 && (
             <div className={styles.pagination}>
               <Button
@@ -342,7 +359,7 @@ export const ShoppingLists = () => {
               />
 
               <span>
-                Page {currentPage} of {totalPages}
+                Page {currentPage} of {totalPages} 
               </span>
 
               <Button
@@ -352,6 +369,7 @@ export const ShoppingLists = () => {
               />
             </div>
           )}
+
         </ContentContainer>
       </ContentContainer>
     </>

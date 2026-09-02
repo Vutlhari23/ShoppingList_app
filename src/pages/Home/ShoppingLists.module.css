@@ -22,7 +22,7 @@
 
 .createRow {
   display: flex;
-  gap: 8px;
+  gap: 15px;
   margin: 20px 0 28px;
 }
 
@@ -57,7 +57,7 @@
 
 .listActions {
   display: flex;
-  gap: 8px;
+  gap: 20px;
   flex-shrink: 0;
 }
 

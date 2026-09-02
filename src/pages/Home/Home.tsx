@@ -256,17 +256,11 @@ export const Home = () => {
               setSortOrder(order);
             }}
           >
-            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-asc">Name</option>
 
-            <option value="name-desc">Name (Z-A)</option>
+            <option value="category-asc">Category </option>
 
-            <option value="category-asc">Category (A-Z)</option>
-
-            <option value="category-desc">Category (Z-A)</option>
-
-            <option value="createdAt-asc">Date (Oldest First)</option>
-
-            <option value="createdAt-desc">Date (Newest First)</option>
+            <option value="createdAt-desc">Date</option>
           </select>
         </div>
       </div>
