@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../lib/api"
 import type { ShoppingList } from "../../type";
@@ -13,11 +13,17 @@ const authHeaders = () => ({
   Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 });
 
+type SortField = "name" | "createdAt";
+type SortOrder = "asc" | "desc";
+
 export const ShoppingLists = () => {
   const [shoppingLists, setShoppingLists] = useState<ShoppingList[]>([]);
   const [listName, setListName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const [sortField, setSortField] = useState<SortField>("createdAt");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
 
   const navigate = useNavigate();
   const currentUser = getCurrentUser();
@@ -56,7 +62,7 @@ export const ShoppingLists = () => {
 
   useEffect(() => {
     fetchShoppingLists();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
 
   const addShoppingList = async () => {
@@ -88,9 +94,10 @@ export const ShoppingLists = () => {
 
   const deleteShoppingList = async (listId: string) => {
     try {
-      const itemsResponse = await fetch(`${API_URL}/items?listId=${listId}`, {
-        headers: authHeaders(),
-      });
+      const itemsResponse = await fetch(
+        `${API_URL}/items?shoppingListId=${listId}`,
+        { headers: authHeaders() }
+      );
 
       if (!itemsResponse.ok) throw new Error("Failed to fetch items for list");
 
@@ -123,6 +130,35 @@ export const ShoppingLists = () => {
   const viewShoppingList = (listId: string) => {
     navigate(`/home/${listId}`);
   };
+
+ 
+  const handleSortChange = (field: SortField) => {
+    if (field === sortField) {
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortField(field);
+      setSortOrder("asc");
+    }
+  };
+
+  const sortedShoppingLists = useMemo(() => {
+    const listsCopy = [...shoppingLists];
+
+    listsCopy.sort((a, b) => {
+      let comparison = 0;
+
+      if (sortField === "name") {
+        comparison = a.name.localeCompare(b.name);
+      } else if (sortField === "createdAt") {
+        comparison =
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      }
+
+      return sortOrder === "asc" ? comparison : -comparison;
+    });
+
+    return listsCopy;
+  }, [shoppingLists, sortField, sortOrder]);
 
   return (
     <>
@@ -158,12 +194,25 @@ export const ShoppingLists = () => {
         <Button label="Create list"  onClick={addShoppingList} />
       </div>
 
+      {shoppingLists.length > 0 && (
+        <div className={styles.sortControls}>
+          <span>Sort by:</span>
+          <button onClick={() => handleSortChange("name")}>
+            Name {sortField === "name" && (sortOrder === "asc" ? "↑" : "↓")}
+          </button>
+          <button onClick={() => handleSortChange("createdAt")}>
+            Date Created{" "}
+            {sortField === "createdAt" && (sortOrder === "asc" ? "↑" : "↓")}
+          </button>
+        </div>
+      )}
+
       {!isLoading && shoppingLists.length === 0 ? (
         <div className={styles.empty}>
           <Text variant="p">No shopping lists yet — create your first one above.</Text>
         </div>
       ) : (
-        shoppingLists.map((list) => (
+        sortedShoppingLists.map((list) => (
           <ContentContainer key={list.id} className={styles.listCard}>
             <div className={styles.listInfo}>
               <h2>{list.name}</h2>

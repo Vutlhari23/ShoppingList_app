@@ -20,35 +20,3 @@
 .button:active {
   transform: translateY(1px);
 }
-
-.primary {
-  background: var(--sage-deep);
-  border-color: var(--sage-deep);
-  color: var(--paper-raised);
-}
-
-.primary:hover {
-  background: var(--sage);
-  border-color: var(--sage);
-}
-
-.danger {
-  border-color: var(--brick);
-  color: var(--brick);
-  background: transparent;
-}
-
-.danger:hover {
-  background: var(--brick);
-  color: var(--paper-raised);
-}
-
-.ghost {
-  border-color: transparent;
-  background: transparent;
-}
-
-.ghost:hover {
-  background: var(--line);
-  color: var(--ink);
-}

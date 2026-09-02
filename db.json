@@ -75,84 +75,31 @@
     },
     {
       "userId": "5",
-      "name": "Braai List",
-      "createdAt": "2026-09-01T13:17:22.118Z",
+      "name": "fdgd",
+      "createdAt": "2026-09-02T14:09:59.379Z",
       "id": 6
     },
     {
       "userId": "5",
-      "name": "September Toiletries",
-      "createdAt": "2026-09-01T13:35:29.851Z",
+      "name": "dddfd",
+      "createdAt": "2026-09-02T14:16:54.826Z",
       "id": 7
     },
     {
       "userId": "5",
-      "name": "My perfect List",
-      "createdAt": "2026-09-01T14:45:58.463Z",
+      "name": "erer",
+      "createdAt": "2026-09-02T14:16:59.234Z",
       "id": 8
     }
   ],
   "items": [
     {
-      "id": "3",
-      "name": "Eggs",
-      "quantity": 2,
-      "shoppingListId": "7",
-      "category": "Groceries"
-    },
-    {
-      "id": "4",
-      "name": "Eggs",
-      "quantity": 2,
-      "shoppingListId": "8",
-      "category": "Groceries"
-    },
-    {
-      "id": "5",
-      "name": "Eggs",
-      "quantity": 2,
-      "shoppingListId": "8",
-      "category": "Groceries"
-    },
-    {
-      "name": "Milk",
-      "category": "Beverages",
-      "quantity": 3,
-      "shoppingListId": "6",
-      "createdAt": "2026-09-01T18:19:42.750Z",
-      "id": "Y7hb-r2"
-    },
-    {
-      "name": "Danone",
-      "category": "Beverages",
-      "quantity": 3,
-      "shoppingListId": "6",
-      "createdAt": "2026-09-01T18:19:44.642Z",
-      "id": "SV84TKk"
-    },
-    {
-      "name": "Archar",
-      "category": "Beverages",
-      "quantity": 3,
-      "shoppingListId": "6",
-      "createdAt": "2026-09-01T18:19:45.403Z",
-      "id": "9qQNQ62"
-    },
-    {
-      "name": "Rice",
-      "category": "Beverages",
-      "quantity": 3,
-      "shoppingListId": "6",
-      "createdAt": "2026-09-01T18:19:45.996Z",
-      "id": "w5LuBAE"
-    },
-    {
       "name": "",
       "category": "",
       "quantity": 0,
       "shoppingListId": "6",
-      "createdAt": "2026-09-02T13:13:16.358Z",
-      "id": "GxaFiyZ"
+      "createdAt": "2026-09-02T14:10:02.538Z",
+      "id": 1
     }
   ],
   "people": [

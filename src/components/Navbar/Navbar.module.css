@@ -1,15 +1,25 @@
 
   .navbar{
-    width: 100px;
+    width: 150px;
     height:"100px";
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-left :0;
+    padding-left: 10px;
+    line-height: 4rem;
    
+
+  
   }
   .link{
     text-decoration: none;
-    
 
-   
+  }
+  .navbar-header{
+    display: flex;
+    flex-direction: row
+
+
+
   }
