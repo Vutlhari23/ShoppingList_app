@@ -1,3 +1,12 @@
+.home-page{
+   display: flex;
+  height: 100vh;
+  overflow-y: hidden;
+  scrollbar-width: none;
+
+}
+
+
 
 .header {
   display: flex;
@@ -61,14 +70,7 @@
   font-size: 14px;
   margin-bottom: 16px;
 }
-.home-page{
-  display: flex;
-  height: 100vh;
-  overflow-y: hidden;
 
-
-
-}
 .sidebar{
     width: 15rem;
     height: 100vh;
@@ -89,19 +91,42 @@ overflow-x: hidden;
   justify-content: center;
   height: 40rem;
   width:100rem;
-
-  
-
-
-
-
  }
 img{
   width: 25rem;
   height:26rem;
   border-radius: 200px;
-
-
+}
+.sortControls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+  gap: 15px;
   
-
+  margin-bottom: 16px;
+}
+select{
+  
+  margin-top:0px;
+  border-radius: 10px;
+  border: 1px solid black;
+height: 30px;
+}
+select option :checked{
+  background-color: lightgray;
+ 
+}
+label
+{
+  margin-top: 40px;
+}
+.pagination{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  bottom: 0%;
+  position: absolute;
+  padding-bottom:30px;
 }
