@@ -94,20 +94,6 @@
   ],
   "items": [
     {
-      "id": "1",
-      "name": "Milk",
-      "quantity": 1,
-      "shoppingListId": "6",
-      "category": "Groceries"
-    },
-    {
-      "id": "2",
-      "name": "Bread",
-      "quantity": 2,
-      "shoppingListId": "6",
-      "category": "Groceries"
-    },
-    {
       "id": "3",
       "name": "Eggs",
       "quantity": 2,

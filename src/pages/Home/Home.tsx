@@ -12,6 +12,7 @@ export const Home = () => {
   const [name, setName] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(0);
+  const [itemToDelete, setItemToDelete] = useState<string | null>(null);
 
   const fetchItems = async () => {
     try {
@@ -38,9 +39,9 @@ export const Home = () => {
   const AddItem = async () => {
     try {
       const newItem = {
-        name: "Vinegar",
-        category: "Beverages",
-        quantity: 3,
+        name: name,
+        category: category,
+        quantity: quantity,
         shoppingListId: listId,
         createdAt: new Date().toISOString(),
       };
@@ -59,6 +60,25 @@ export const Home = () => {
       console.error("Failed to add items into the database :", error);
     }
   };
+  // delete an item
+ const deleteItem  =  async (itemid: string ) => {
+
+  try{
+
+    await apiFetch<void>(`/items/${itemid}`, {
+      method: "DELETE",
+      body: JSON.stringify({ id: itemid }),
+
+    }, false);
+    setItems((previousItems) => previousItems.filter((item) => item.id !== itemid));
+
+
+  }catch(error){
+    console.error("Failed  to delete the item from the database: ", error);
+  }
+
+ }
+
 
   return (
     <ContentContainer>
@@ -67,8 +87,12 @@ export const Home = () => {
 
       <ul>
         {items.map((item) => (
+          <>
           <li key={item.id}>{item.name}</li>
+          <button onClick={() => deleteItem(item.id)}>Delete</button>
+          </>
         ))}
+        
       </ul>
     </ContentContainer>
   );
