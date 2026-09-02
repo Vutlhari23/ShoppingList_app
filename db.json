@@ -74,32 +74,82 @@
       "id": 5
     },
     {
-      "userId": "5",
-      "name": "fdgd",
-      "createdAt": "2026-09-02T14:09:59.379Z",
+      "userId": "8",
+      "name": "My perfect List",
+      "createdAt": "2026-09-02T17:14:05.098Z",
       "id": 6
     },
     {
       "userId": "5",
-      "name": "dddfd",
-      "createdAt": "2026-09-02T14:16:54.826Z",
+      "name": "xcdcd",
+      "createdAt": "2026-09-02T17:14:46.711Z",
       "id": 7
-    },
-    {
-      "userId": "5",
-      "name": "erer",
-      "createdAt": "2026-09-02T14:16:59.234Z",
-      "id": 8
     }
   ],
   "items": [
     {
-      "name": "",
+      "name": "hjjj",
       "category": "",
-      "quantity": 0,
-      "shoppingListId": "6",
-      "createdAt": "2026-09-02T14:10:02.538Z",
+      "quantity": 1,
+      "shoppingListId": "5",
+      "createdAt": "2026-09-02T17:09:25.480Z",
       "id": 1
+    },
+    {
+      "name": "jjjj",
+      "category": "",
+      "quantity": 1,
+      "shoppingListId": "5",
+      "createdAt": "2026-09-02T17:09:33.782Z",
+      "id": 2
+    },
+    {
+      "name": "hyh",
+      "category": "",
+      "quantity": 1,
+      "shoppingListId": "5",
+      "createdAt": "2026-09-02T17:10:21.488Z",
+      "id": 3
+    },
+    {
+      "name": "jjjj",
+      "category": "jj",
+      "quantity": 1,
+      "shoppingListId": "5",
+      "createdAt": "2026-09-02T17:11:16.872Z",
+      "id": 4
+    },
+    {
+      "name": "hjjjj",
+      "category": "",
+      "quantity": 1,
+      "shoppingListId": "5",
+      "createdAt": "2026-09-02T17:11:52.380Z",
+      "id": 5
+    },
+    {
+      "name": "milk",
+      "category": "",
+      "quantity": 1,
+      "shoppingListId": "5",
+      "createdAt": "2026-09-02T17:12:26.920Z",
+      "id": 6
+    },
+    {
+      "name": "Butter",
+      "category": "",
+      "quantity": 1,
+      "shoppingListId": "5",
+      "createdAt": "2026-09-02T17:12:36.640Z",
+      "id": 7
+    },
+    {
+      "name": "Blue butter",
+      "category": "",
+      "quantity": 1,
+      "shoppingListId": "5",
+      "createdAt": "2026-09-02T17:13:25.543Z",
+      "id": 8
     }
   ],
   "people": [

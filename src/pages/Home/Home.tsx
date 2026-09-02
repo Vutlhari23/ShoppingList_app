@@ -1,42 +1,53 @@
+import { useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { apiFetch } from "../../lib/api";
 import type { Item } from "../../type";
-import { useState, useEffect, useMemo } from "react";
+
 import { ContentContainer } from "../../components/ContentContainer/ContentContainer";
-import { useParams } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
 
 export const Home = () => {
   const { listId } = useParams();
 
-
-
   const [items, setItems] = useState<Item[]>([]);
 
+ 
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  const [name, setName] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
-  const [quantity, setQuantity] = useState<number>(0);
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [quantity, setQuantity] = useState(1);
+
 
   const [editingItem, setEditingItem] = useState<Item | null>(null);
-  const [editName, setEditName] = useState<string>("");
-  const [editCategory, setEditCategory] = useState<string>("");
-  const [editQuantity, setEditQuantity] = useState<number>(0);
 
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [editName, setEditName] = useState("");
+  const [editCategory, setEditCategory] = useState("");
+  const [editQuantity, setEditQuantity] = useState(1);
+
+
+  const [searchTerm, setSearchTerm] = useState("");
 
 
   type SortField = "name" | "category" | "createdAt";
-  type Sortorder = "asc" | "desc";
+  type SortOrder = "asc" | "desc";
 
   const [sortField, setSortField] = useState<SortField>("createdAt");
 
-  const [sortOrder, setSortOrder] = useState<Sortorder>("asc");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+
 
 
   const fetchItems = async () => {
+    if (!listId) {
+      console.error("No shopping list ID was provided.");
+      return;
+    }
+
     try {
       const data = await apiFetch<Item[]>(
-        `/items?shoppingListId=${listId}`,
+        `/items?shoppingListId=${encodeURIComponent(listId)}`,
         {},
         false,
       );
@@ -52,18 +63,27 @@ export const Home = () => {
   }, [listId]);
 
 
-  const AddItem = async () => {
+  const addItem = async () => {
+    if (!name.trim()) {
+      return;
+    }
+
+    if (!listId) {
+      console.error("Cannot add item without a shopping list ID.");
+      return;
+    }
+
     try {
       const newItem = {
-        name: name,
-        category: category,
-        quantity: quantity,
+        name: name.trim(),
+        category: category.trim(),
+        quantity,
         shoppingListId: listId,
         createdAt: new Date().toISOString(),
       };
 
-      const data = await apiFetch<Item>(
-        `/items`,
+      const createdItem = await apiFetch<Item>(
+        "/items",
         {
           method: "POST",
           body: JSON.stringify(newItem),
@@ -71,14 +91,19 @@ export const Home = () => {
         false,
       );
 
-      setItems((prevItems) => [...prevItems, data]);
+      setItems((previousItems) => [...previousItems, createdItem]);
 
+      // Reset form
       setName("");
       setCategory("");
-      setQuantity(0);
+      setQuantity(1);
+
+      // Close modal
+      setIsAddModalOpen(false);
     } catch (error) {
-      console.error("Failed to add items into the database:", error);
+      console.error("Failed to add item into the database:", error);
     }
+  };
 
 
   const deleteItem = async (itemId: string) => {
@@ -100,6 +125,7 @@ export const Home = () => {
   };
 
 
+ 
 
   const updateItem = async (itemId: string, updatedItem: Partial<Item>) => {
     try {
@@ -121,6 +147,7 @@ export const Home = () => {
   };
 
 
+
   const openEditModal = (item: Item) => {
     setEditingItem(item);
 
@@ -129,32 +156,36 @@ export const Home = () => {
     setEditQuantity(item.quantity);
   };
 
-
-
   const closeEditModal = () => {
     setEditingItem(null);
   };
 
-
   const handleSaveEdit = async () => {
-    if (!editingItem) return;
+    if (!editingItem) {
+      return;
+    }
+
+    if (!editName.trim()) {
+      return;
+    }
 
     await updateItem(editingItem.id, {
-      name: editName,
-      category: editCategory,
+      name: editName.trim(),
+      category: editCategory.trim(),
       quantity: editQuantity,
     });
 
     closeEditModal();
   };
 
+ 
 
   const handleSortChange = (field: SortField) => {
     if (field === sortField) {
-    
-      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+      setSortOrder((previousOrder) =>
+        previousOrder === "asc" ? "desc" : "asc",
+      );
     } else {
-     
       setSortField(field);
       setSortOrder("asc");
     }
@@ -163,10 +194,9 @@ export const Home = () => {
 
 
   const sortedItems = useMemo(() => {
-    
-    const filteredItems = items.filter((item) => {
-      const search = searchTerm.toLowerCase().trim();
+    const search = searchTerm.toLowerCase().trim();
 
+    const filteredItems = items.filter((item) => {
       return (
         item.name.toLowerCase().includes(search) ||
         item.category.toLowerCase().includes(search)
@@ -180,7 +210,9 @@ export const Home = () => {
 
       if (sortField === "name" || sortField === "category") {
         comparison = a[sortField].localeCompare(b[sortField]);
-      } else if (sortField === "createdAt") {
+      }
+
+      if (sortField === "createdAt") {
         comparison =
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
       }
@@ -198,6 +230,7 @@ export const Home = () => {
       <h1>Shopping List</h1>
 
 
+
       <div className="search-container">
         <input
           type="text"
@@ -207,12 +240,11 @@ export const Home = () => {
         />
 
         {searchTerm && <button onClick={() => setSearchTerm("")}>Clear</button>}
-      </div>
+        </div>
 
+      <Button label="Add Item" onClick={() => setIsAddModalOpen(true)} />
 
-      <Button label="Add Item" onClick={AddItem} />
-
-
+ 
 
       {items.length > 0 && (
         <div className="sort-controls">
@@ -256,11 +288,57 @@ export const Home = () => {
         <p>No items found for "{searchTerm}"</p>
       )}
 
- 
+    
+
+      {isAddModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsAddModalOpen(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <h2>Add Item</h2>
+
+            <label>
+              Name
+              <input
+                type="text"
+                placeholder="e.g. Milk"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+
+            <label>
+              Category
+              <input
+                type="text"
+                placeholder="e.g. Dairy"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              />
+            </label>
+
+            <label>
+              Quantity
+              <input
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+              />
+            </label>
+
+            <div className="modal-actions">
+              <Button label="Add Item" onClick={addItem} />
+
+              <Button label="Cancel" onClick={() => setIsAddModalOpen(false)} />
+            </div>
+          </div>
+        </div>
+      )}
 
       {editingItem && (
         <div className="modal-overlay" onClick={closeEditModal}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <h2>Edit Item</h2>
+
             <label>
               Name
               <input
@@ -283,6 +361,7 @@ export const Home = () => {
               Quantity
               <input
                 type="number"
+                min="1"
                 value={editQuantity}
                 onChange={(e) => setEditQuantity(Number(e.target.value))}
               />
@@ -298,4 +377,4 @@ export const Home = () => {
       )}
     </ContentContainer>
   );
-}};
+};
