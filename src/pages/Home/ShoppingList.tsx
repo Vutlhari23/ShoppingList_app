@@ -8,6 +8,7 @@ import { Text } from "../../components/Text/Text";
 import { ContentContainer } from "../../components/ContentContainer/ContentContainer";
 import styles from "./ShoppingLists.module.css";
 import {Navbar} from '../../components/Navbar/Navbar'
+import NoList  from '../../assets/no_list.png'
 
 const authHeaders = () => ({
   Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -208,9 +209,10 @@ export const ShoppingLists = () => {
       )}
 
       {!isLoading && shoppingLists.length === 0 ? (
-        <div className={styles.empty}>
-          <Text variant="p">No shopping lists yet — create your first one above.</Text>
-        </div>
+        <ContentContainer className={styles.emptystate}>
+          <img src={NoList} alt="No list" />
+          <Text variant="p">No shopping lists yet. Create your first shopping list above to get started!</Text>
+        </ContentContainer>
       ) : (
         sortedShoppingLists.map((list) => (
           <ContentContainer key={list.id} className={styles.listCard}>

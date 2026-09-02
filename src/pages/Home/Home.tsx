@@ -12,13 +12,11 @@ export const Home = () => {
 
   const [items, setItems] = useState<Item[]>([]);
 
- 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState(1);
-
 
   const [editingItem, setEditingItem] = useState<Item | null>(null);
 
@@ -26,9 +24,7 @@ export const Home = () => {
   const [editCategory, setEditCategory] = useState("");
   const [editQuantity, setEditQuantity] = useState(1);
 
-
   const [searchTerm, setSearchTerm] = useState("");
-
 
   type SortField = "name" | "category" | "createdAt";
   type SortOrder = "asc" | "desc";
@@ -36,8 +32,6 @@ export const Home = () => {
   const [sortField, setSortField] = useState<SortField>("createdAt");
 
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
-
-
 
   const fetchItems = async () => {
     if (!listId) {
@@ -62,9 +56,14 @@ export const Home = () => {
     fetchItems();
   }, [listId]);
 
-
   const addItem = async () => {
     if (!name.trim()) {
+      alert("Please enter an item name.");
+      return;
+    }
+
+    if (quantity < 1) {
+      alert("Quantity must be at least 1.");
       return;
     }
 
@@ -105,7 +104,6 @@ export const Home = () => {
     }
   };
 
-
   const deleteItem = async (itemId: string) => {
     try {
       await apiFetch<void>(
@@ -124,12 +122,9 @@ export const Home = () => {
     }
   };
 
-
- 
-
   const updateItem = async (itemId: string, updatedItem: Partial<Item>) => {
     try {
-      const data = await apiFetch<Item>(
+      const updatedData = await apiFetch<Item>(
         `/items/${itemId}`,
         {
           method: "PATCH",
@@ -139,14 +134,12 @@ export const Home = () => {
       );
 
       setItems((previousItems) =>
-        previousItems.map((item) => (item.id === itemId ? data : item)),
+        previousItems.map((item) => (item.id === itemId ? updatedData : item)),
       );
     } catch (error) {
       console.error("Failed to update the item in the database:", error);
     }
   };
-
-
 
   const openEditModal = (item: Item) => {
     setEditingItem(item);
@@ -158,6 +151,9 @@ export const Home = () => {
 
   const closeEditModal = () => {
     setEditingItem(null);
+    setEditName("");
+    setEditCategory("");
+    setEditQuantity(1);
   };
 
   const handleSaveEdit = async () => {
@@ -166,6 +162,12 @@ export const Home = () => {
     }
 
     if (!editName.trim()) {
+      alert("Please enter an item name.");
+      return;
+    }
+
+    if (editQuantity < 1) {
+      alert("Quantity must be at least 1.");
       return;
     }
 
@@ -178,29 +180,16 @@ export const Home = () => {
     closeEditModal();
   };
 
- 
-
-  const handleSortChange = (field: SortField) => {
-    if (field === sortField) {
-      setSortOrder((previousOrder) =>
-        previousOrder === "asc" ? "desc" : "asc",
-      );
-    } else {
-      setSortField(field);
-      setSortOrder("asc");
-    }
-  };
-
-
-
   const sortedItems = useMemo(() => {
+    // Convert search term to lowercase
     const search = searchTerm.toLowerCase().trim();
 
     const filteredItems = items.filter((item) => {
-      return (
-        item.name.toLowerCase().includes(search) ||
-        item.category.toLowerCase().includes(search)
-      );
+      const itemName = item.name.toLowerCase();
+
+      const itemCategory = item.category.toLowerCase();
+
+      return itemName.includes(search) || itemCategory.includes(search);
     });
 
     const itemsCopy = [...filteredItems];
@@ -208,8 +197,12 @@ export const Home = () => {
     itemsCopy.sort((a, b) => {
       let comparison = 0;
 
-      if (sortField === "name" || sortField === "category") {
-        comparison = a[sortField].localeCompare(b[sortField]);
+      if (sortField === "name") {
+        comparison = a.name.localeCompare(b.name);
+      }
+
+      if (sortField === "category") {
+        comparison = a.category.localeCompare(b.category);
       }
 
       if (sortField === "createdAt") {
@@ -217,78 +210,96 @@ export const Home = () => {
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
       }
 
-      return sortOrder === "asc" ? comparison : -comparison;
+      if (sortOrder === "asc") {
+        return comparison;
+      }
+
+      return -comparison;
     });
 
     return itemsCopy;
   }, [items, searchTerm, sortField, sortOrder]);
 
-
-
   return (
     <ContentContainer>
       <h1>Shopping List</h1>
 
+      <div className="list-controls">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search items..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
 
-
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search items..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-
-        {searchTerm && <button onClick={() => setSearchTerm("")}>Clear</button>}
+          {searchTerm && (
+            <button type="button" onClick={() => setSearchTerm("")}>
+              Clear
+            </button>
+          )}
         </div>
+
+        <div className="sort-controls">
+          <label htmlFor="sortBy">Sort by:</label>
+
+          <select
+            id="sortBy"
+            value={`${sortField}-${sortOrder}`}
+            onChange={(e) => {
+              const [field, order] = e.target.value.split("-") as [
+                SortField,
+                SortOrder,
+              ];
+
+              setSortField(field);
+              setSortOrder(order);
+            }}
+          >
+            <option value="name-asc">Name (A-Z)</option>
+
+            <option value="name-desc">Name (Z-A)</option>
+
+            <option value="category-asc">Category (A-Z)</option>
+
+            <option value="category-desc">Category (Z-A)</option>
+
+            <option value="createdAt-asc">Date (Oldest First)</option>
+
+            <option value="createdAt-desc">Date (Newest First)</option>
+          </select>
+        </div>
+      </div>
 
       <Button label="Add Item" onClick={() => setIsAddModalOpen(true)} />
 
- 
+      {sortedItems.length > 0 ? (
+        <ul>
+          {sortedItems.map((item) => (
+            <li key={item.id}>
+              <strong>{item.name}</strong>
 
-      {items.length > 0 && (
-        <div className="sort-controls">
-          <span>Sort by:</span>
+              <span>Category: {item.category}</span>
 
-          <button onClick={() => handleSortChange("name")}>
-            Name {sortField === "name" && (sortOrder === "asc" ? "↑" : "↓")}
-          </button>
+              <span>Quantity: {item.quantity}</span>
 
-          <button onClick={() => handleSortChange("category")}>
-            Category{" "}
-            {sortField === "category" && (sortOrder === "asc" ? "↑" : "↓")}
-          </button>
+              <button type="button" onClick={() => openEditModal(item)}>
+                Edit
+              </button>
 
-          <button onClick={() => handleSortChange("createdAt")}>
-            Date{" "}
-            {sortField === "createdAt" && (sortOrder === "asc" ? "↑" : "↓")}
-          </button>
-        </div>
+              <button type="button" onClick={() => deleteItem(item.id)}>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>
+          {searchTerm
+            ? `No items found for "${searchTerm}"`
+            : "No items in this shopping list yet."}
+        </p>
       )}
-
-
-      <ul>
-        {sortedItems.map((item) => (
-          <li key={item.id}>
-            <strong>{item.name}</strong>
-
-            <span>Category: {item.category}</span>
-
-            <span>Quantity: {item.quantity}</span>
-
-            <button onClick={() => openEditModal(item)}>Edit</button>
-
-            <button onClick={() => deleteItem(item.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-
-
-      {items.length > 0 && sortedItems.length === 0 && searchTerm && (
-        <p>No items found for "{searchTerm}"</p>
-      )}
-
-    
 
       {isAddModalOpen && (
         <div className="modal-overlay" onClick={() => setIsAddModalOpen(false)}>
