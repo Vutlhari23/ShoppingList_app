@@ -115,7 +115,7 @@
       "category": "Groceries"
     },
     {
-      "name": "Vinegar",
+      "name": "Milk",
       "category": "Beverages",
       "quantity": 3,
       "shoppingListId": "6",
@@ -123,7 +123,7 @@
       "id": "Y7hb-r2"
     },
     {
-      "name": "Vinegar",
+      "name": "Danone",
       "category": "Beverages",
       "quantity": 3,
       "shoppingListId": "6",
@@ -131,7 +131,7 @@
       "id": "SV84TKk"
     },
     {
-      "name": "Vinegar",
+      "name": "Archar",
       "category": "Beverages",
       "quantity": 3,
       "shoppingListId": "6",
@@ -139,7 +139,7 @@
       "id": "9qQNQ62"
     },
     {
-      "name": "Vinegar",
+      "name": "Rice",
       "category": "Beverages",
       "quantity": 3,
       "shoppingListId": "6",
@@ -147,12 +147,12 @@
       "id": "w5LuBAE"
     },
     {
-      "name": "Vinegar",
-      "category": "Beverages",
-      "quantity": 3,
+      "name": "",
+      "category": "",
+      "quantity": 0,
       "shoppingListId": "6",
-      "createdAt": "2026-09-01T18:19:46.613Z",
-      "id": "nXdDs-f"
+      "createdAt": "2026-09-02T13:13:16.358Z",
+      "id": "GxaFiyZ"
     }
   ],
   "people": [

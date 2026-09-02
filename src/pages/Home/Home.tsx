@@ -12,20 +12,23 @@ export const Home = () => {
   const [name, setName] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(0);
-  const [itemToDelete, setItemToDelete] = useState<string | null>(null);
+
+  const [editingItem, setEditingItem] = useState<Item | null>(null);
+
+  const [editName, setEditName] = useState<string>("");
+  const [editCategory, setEditCategory] = useState<string>("");
+  const [editQuantity, setEditQuantity] = useState<number>(0);
+
+
+
 
   const fetchItems = async () => {
     try {
-      console.log("listId:", listId);
-
       const data = await apiFetch<Item[]>(
         `/items?shoppingListId=${listId}`,
         {},
         false,
       );
-
-      console.log("Items from database:", data);
-
       setItems(data);
     } catch (error) {
       console.error("Error fetching items:", error);
@@ -54,31 +57,64 @@ export const Home = () => {
         },
         false,
       );
-      console.log("Item added to the database:", data);
       setItems((prevItems) => [...prevItems, data]);
     } catch (error) {
       console.error("Failed to add items into the database :", error);
     }
   };
-  // delete an item
- const deleteItem  =  async (itemid: string ) => {
 
-  try{
+  const deleteItem = async (itemId: string) => {
+    try {
+      await apiFetch<void>(`/items/${itemId}`, { method: "DELETE" }, false);
+      setItems((previousItems) =>
+        previousItems.filter((item) => item.id !== itemId),
+      );
+    } catch (error) {
+      console.error("Failed to delete the item from the database: ", error);
+    }
+  };
 
-    await apiFetch<void>(`/items/${itemid}`, {
-      method: "DELETE",
-      body: JSON.stringify({ id: itemid }),
+  const updateItem = async (itemId: string, updatedItem: Partial<Item>) => {
+    try {
+      const data = await apiFetch<Item>(
+        `/items/${itemId}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(updatedItem),
+        },
+        false,
+      );
 
-    }, false);
-    setItems((previousItems) => previousItems.filter((item) => item.id !== itemid));
+      setItems((previousItems) =>
+        previousItems.map((item) => (item.id === itemId ? data : item)),
+      );
+    } catch (error) {
+      console.error("Failed to update the item in the database: ", error);
+    }
+  };
 
+  const openEditModal = (item: Item) => {
+    setEditingItem(item);
+    setEditName(item.name);
+    setEditCategory(item.category);
+    setEditQuantity(item.quantity);
+  };
 
-  }catch(error){
-    console.error("Failed  to delete the item from the database: ", error);
-  }
+  const closeEditModal = () => {
+    setEditingItem(null);
+  };
 
- }
+  const handleSaveEdit = async () => {
+    if (!editingItem) return;
 
+    await updateItem(editingItem.id, {
+      name: editName,
+      category: editCategory,
+      quantity: editQuantity,
+    });
+
+    closeEditModal();
+  };
 
   return (
     <ContentContainer>
@@ -87,13 +123,53 @@ export const Home = () => {
 
       <ul>
         {items.map((item) => (
-          <>
-          <li key={item.id}>{item.name}</li>
-          <button onClick={() => deleteItem(item.id)}>Delete</button>
-          </>
+          <li key={item.id}>
+            {item.name}
+            <button onClick={() => openEditModal(item)}>Edit</button>
+            <button onClick={() => deleteItem(item.id)}>Delete</button>
+          </li>
         ))}
-        
       </ul>
+
+      {editingItem && (
+        <div className="modal-overlay" onClick={closeEditModal}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <h2>Edit Item</h2>
+
+            <label>
+              Name
+              <input
+                type="text"
+                value={editName}
+                onChange={(e) => setEditName(e.target.value)}
+              />
+            </label>
+
+            <label>
+              Category
+              <input
+                type="text"
+                value={editCategory}
+                onChange={(e) => setEditCategory(e.target.value)}
+              />
+            </label>
+
+            <label>
+              Quantity
+              <input
+                type="number"
+                value={editQuantity}
+                onChange={(e) => setEditQuantity(Number(e.target.value))}
+              />
+            </label>
+
+            <div className="modal-actions">
+              <Button label="Save" onClick={handleSaveEdit} />
+              <Button label="Cancel" onClick={closeEditModal} />
+            </div>
+          </div>
+        </div>
+      )}
     </ContentContainer>
   );
 };
