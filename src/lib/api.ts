@@ -11,14 +11,14 @@ export class ApiError extends Error {
 
 function getToken(): string | null {
   return localStorage.getItem('accessToken');
-}
+} 
 
 export async function apiFetch<T = unknown>(
   path: string,
-  options: RequestInit = {},
-  requireAuth = true
-): Promise<T> {
-  const headers = new Headers(options.headers);
+  options: RequestInit = {},// option : get,post, delete, patch or push 
+  requireAuth = true // checks if the person should be logged in or not 
+): Promise<T> {   // (function of fetch eturn a promise)
+  const headers = new Headers(options.headers); 
 
   if (!headers.has('Content-Type') && options.body) {
     headers.set('Content-Type', 'application/json');

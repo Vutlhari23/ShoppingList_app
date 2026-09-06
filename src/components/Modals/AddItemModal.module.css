@@ -1,0 +1,179 @@
+.modal {
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+
+  background: #ffffff;
+  border-radius: 14px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   Modal Title
+========================= */
+
+.modal h3 {
+  margin: 0 0 25px;
+
+  font-size: 24px;
+  font-weight: 600;
+
+  color: #1f2937;
+}
+
+
+/* =========================
+   Labels
+========================= */
+
+.modal label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* =========================
+   Inputs & Select
+========================= */
+
+.modal input,
+.modal select {
+  width: 100%;
+  height: 44px;
+
+  padding: 0 12px;
+  margin-bottom: 18px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #1f2937;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+
+/* Placeholder */
+
+.modal input::placeholder {
+  color: #9ca3af;
+}
+
+
+/* =========================
+   Error Message
+========================= */
+
+.modal p {
+  padding: 10px 12px;
+  margin: 0 0 15px;
+
+  border-radius: 7px;
+
+  background: #fee2e2;
+  color: #b91c1c !important;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   Buttons
+========================= */
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 8px;
+}
+
+.btn-container button {
+  min-width: 90px;
+  height: 40px;
+
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+/* Add button */
+
+.btn-container button:first-child {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+.btn-container button:first-child:hover {
+  background: #4f46e5;
+}
+
+
+/* Cancel button */
+
+.btn-container button:last-child {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.btn-container button:last-child:hover {
+  background: #e5e7eb;
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 480px) {
+  .modal {
+    max-width: calc(100% - 30px);
+    padding: 22px;
+  }
+
+  .modal h3 {
+    font-size: 21px;
+  }
+
+  .btn-container {
+    flex-direction: column;
+  }
+
+  .btn-container button {
+    width: 100%;
+  }
+}

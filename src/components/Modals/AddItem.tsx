@@ -1,45 +1,33 @@
 import { useState } from "react";
 import { Overlay } from "../Overlay/Overlay";
 import { ContentContainer } from "../ContentContainer/ContentContainer";
-import styles from "../Modals/AddItemModel.module.css";
+import styles from "../Modals/AddItemModal.module.css";
 
 export type NewItem = {
   name: string;
   category: string;
-  quantity: string;
+  quantity: number;
 };
 
 export type AddItemProps = {
   onClose: () => void;
-  onSubmit: (newItem: NewItem) => void;
+  onSubmit: (newItem: NewItem) => Promise<void> | void; 
 };
 
-export const AddItem = ({ onClose, onSubmit }: AddItemProps) => {
+export const AddItem = ({ onClose,onSubmit}: AddItemProps) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("personal");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [error, setError] = useState("");
 
-  const handleAdd = () => {
-    // Validation
-    if (!name.trim()) {
-      setError("Item name is required");
-      return;
-    }
-    if (!quantity || Number(quantity) <= 0) {
-      setError("Quantity must be greater than 0");
-      return;
-    }
-
-    setError("");
-    onSubmit({ name, category, quantity });
-  };
+  
 
   return (
     <Overlay onClose={onClose}>
       <ContentContainer
-        className={styles["modal"]}
+        className={styles['modal']}
         onClick={(e) => e.stopPropagation()}
+        
       >
         <h3>Add new Item</h3>
 
@@ -74,21 +62,28 @@ export const AddItem = ({ onClose, onSubmit }: AddItemProps) => {
         <input
           type="number"
           value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
+          onChange={(e) => setQuantity(Number(e.target.value))}
           min="1"
         />
 
-        <div>
+        <ContentContainer className={styles['btn-container']}>
+          
+     
           <button
-            type="button"
-            onClick={handleAdd}
-          >
-            Add
-          </button>
-          <button type="button" onClick={onClose}>
-            Cancel
-          </button>
-        </div>
+  type="button"
+  onClick={async() => {
+ await  onSubmit({
+      name,
+      category,
+      quantity,
+      
+    });
+    onClose();
+  }}
+>
+  Add
+</button>
+        </ContentContainer>
       </ContentContainer>
     </Overlay>
   );

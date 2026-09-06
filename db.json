@@ -28,10 +28,11 @@
     {
       "email": "v@gmail.com",
       "password": "$2a$10$bi1ZWwYwLWnvWXrSRZScfuPz3kG6qljEK76nusJgQSGFYRa1VYqXK",
-      "name": "Vutlhari",
+      "name": "Ntsako",
       "surname": "Maswanganyi",
       "cellNo": "0798241382",
-      "id": 5
+      "id": 5,
+      "CellNo": "0798241382"
     },
     {
       "email": "a@gmail.com",
@@ -81,9 +82,15 @@
     },
     {
       "userId": "5",
-      "name": "Toiletries",
-      "createdAt": "2026-09-02T23:21:11.974Z",
+      "name": "NewList",
+      "createdAt": "2026-09-05T17:02:11.174Z",
       "id": 7
+    },
+    {
+      "userId": "5",
+      "name": "Toiletries",
+      "createdAt": "2026-09-05T17:15:05.136Z",
+      "id": 8
     }
   ],
   "items": [
@@ -152,12 +159,31 @@
       "id": 8
     },
     {
-      "name": "Roll on",
-      "category": "",
+      "name": "Dove",
+      "category": "personal",
       "quantity": 1,
       "shoppingListId": "7",
-      "createdAt": "2026-09-02T23:22:16.758Z",
-      "id": 12
+      "createdAt": "2026-09-06T17:27:32.188Z",
+      "createdBy": "1",
+      "id": 14
+    },
+    {
+      "name": "Chris",
+      "category": "personal",
+      "quantity": 1,
+      "shoppingListId": "7",
+      "createdAt": "2026-09-06T17:27:41.941Z",
+      "createdBy": "1",
+      "id": 15
+    },
+    {
+      "name": "School bag(Nike)",
+      "category": "personal",
+      "quantity": 1,
+      "shoppingListId": "7",
+      "createdAt": "2026-09-06T17:34:38.506Z",
+      "createdBy": "1",
+      "id": 16
     }
   ],
   "people": [

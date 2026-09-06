@@ -7,7 +7,7 @@ export interface ShoppingList {
 
 export type Item = {
   id: string;
-  shoppingListId: string;
+  shoppingListId?: string;
   name: string;
   quantity: number;
   notes?: string;

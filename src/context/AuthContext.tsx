@@ -116,7 +116,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       register,
       logout,
     }),
-    [user, accessToken, login, register, logout]
+    [user, accessToken, login, register, logout] //change one of these you get logged out.
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
