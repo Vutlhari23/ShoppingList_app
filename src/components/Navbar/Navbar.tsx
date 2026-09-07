@@ -16,23 +16,27 @@ export const Navbar = () => {
     <ContentContainer className={styles['navbar']}>
       <ContentContainer className={styles['navbar-header']}>
       <i className="bi bi-cart-check-fill" style ={{width: "40px", height: "24px"}}></i>
-      <h2>ShoppingList</h2>
+      <h1>ShoppingList</h1>
      
       </ContentContainer>
       
-      {user?.email && <h4 style={{ fontSize: 12 }}>{user.name+" "+ user.surname} </h4>}
+      
     
       <Link to="/home" className={styles.link}>
       <i className="bi bi-house-heart-fill"></i>
            Home
       </Link>
-      <Link to="/profile" className={styles.link}>
+     
+       <Link to="/shoppinglist" className={styles.link}>
+       <i className="bi bi-list-stars"></i>
+        My lists
+      </Link>
+       <Link to="/profile" className={styles.link}>
            <i className="bi bi-person-circle"></i>
             Profile
       </Link>
-       <Link to="/shoppinglist" className={styles.link}>
-        My lists
-      </Link>
+  
+      {user?.email && <h4 style={{ fontSize: 12 }}>{user.name+" "+ user.surname} </h4>}
       <button type="button" className={styles.link} onClick={handleLogout}>
         <i className="bi bi-box-arrow-right"></i>
         Logout
