@@ -28,7 +28,7 @@
     {
       "email": "v@gmail.com",
       "password": "$2a$10$bi1ZWwYwLWnvWXrSRZScfuPz3kG6qljEK76nusJgQSGFYRa1VYqXK",
-      "name": "Ntsako",
+      "name": "Ntsako Brendon",
       "surname": "Maswanganyi",
       "cellNo": "0798241382",
       "id": 5,
@@ -165,22 +165,22 @@
       "id": 8
     },
     {
-      "name": "Chris",
+      "name": "Dove Soap",
       "category": "personal",
       "quantity": 1,
       "shoppingListId": "7",
-      "createdAt": "2026-09-06T17:27:41.941Z",
-      "createdBy": "1",
-      "id": 15
-    },
-    {
-      "name": "School bag(Nike)",
-      "category": "beverage",
-      "quantity": 1,
-      "shoppingListId": "7",
-      "createdAt": "2026-09-06T17:34:38.506Z",
+      "createdAt": "2026-09-07T01:11:48.958Z",
       "createdBy": "1",
       "id": 16
+    },
+    {
+      "name": "MineStrone",
+      "category": "personal",
+      "quantity": 1,
+      "shoppingListId": "7",
+      "createdAt": "2026-09-07T01:12:03.381Z",
+      "createdBy": "1",
+      "id": 17
     }
   ],
   "people": [

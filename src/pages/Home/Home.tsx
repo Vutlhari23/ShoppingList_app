@@ -6,7 +6,6 @@ import { ContentContainer } from "../../components/ContentContainer/ContentConta
 import { Button } from "../../components/Button/Button";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "../Home/Home.module.css";
-import { TextInput } from "../../components/TextInput/TextInput";
 import { AddItem } from "../../components/Modals/AddItem";
 import { EditModal } from "../../components/Modals/EditModal";
 
@@ -253,14 +252,16 @@ const deleteItem = async (itemId: string) => {
             <h1>Shopping List</h1>
             <p>Manage the items you need to buy.</p>
           </div>
-
+          <div>
           <Button
+          className={styles.btn}
             label="Add Item"
             onClick={() => {
               setMessage("");
               setIsAddModalOpen(true);
             }}
           />
+        </div>
         </div>
 
         {message && (
@@ -274,7 +275,7 @@ const deleteItem = async (itemId: string) => {
 
         <ContentContainer className={styles["list-controls"]}>
           <ContentContainer className={styles["search-container"]}>
-            <TextInput
+            <input
               className={styles.inputField}
               type="text"
               placeholder="Search items..."
@@ -294,7 +295,10 @@ const deleteItem = async (itemId: string) => {
           </ContentContainer>
 
           <ContentContainer className={styles["sort-container"]}>
-            <label htmlFor="sortBy">Sort by:</label>
+            <label
+            className={styles['sort-lbl']}
+            
+            htmlFor="sortBy">Sort by:</label>
             <select
               id="sortBy"
               value={`${sortField}-${sortOrder}`}
@@ -307,24 +311,25 @@ const deleteItem = async (itemId: string) => {
                 setSortOrder(order);
               }}
             >
-              <option value="createdAt-desc">Newest</option>
-              <option value="createdAt-asc">Oldest</option>
-              <option value="name-asc">Name A-Z</option>
-              <option value="name-desc">Name Z-A</option>
-              <option value="category-asc">Category A-Z</option>
-              <option value="category-desc">Category Z-A</option>
+              <option value="createdAt-desc">Date created</option>
+              <option value="name-asc">Name </option>
+              <option value="category-asc">Category</option>
+             
             </select>
           </ContentContainer>
         </ContentContainer>
 
         {sortedItems.length > 0 ? (
+
           <ul className={styles.itemList}>
             {sortedItems.map((item) => (
               <li className={styles.itemCard} key={item.id}>
+               
                 <div className={styles.itemInfo}>
-                  <strong>{item.name}</strong>
-                  <span>({item.category})</span>
-                  <span>Qty: {item.quantity}</span>
+                  <input type="radio"></input>
+                  <strong>{item.name}</strong><br/>
+                  <span> Category: ({item.category})</span><br/>
+                  <span>   Quantity: {item.quantity}</span>
                 </div>
                 <div className={styles.itemActions}>
                   <Button label="Edit" onClick={() => openEditModal(item)} />

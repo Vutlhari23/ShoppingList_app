@@ -2,6 +2,7 @@ import { Button } from "../Button/Button";
 import { ContentContainer } from "../ContentContainer/ContentContainer";
 import { Overlay } from "../Overlay/Overlay";
 import { Text } from "../Text/Text";
+import styles from '../Modals/AddItemModal.module.css'
 
 type DeleteModalProps = {
   onClose: () => void;
@@ -10,7 +11,7 @@ type DeleteModalProps = {
 const DeleteModal = ({ onClose, onConfirmDelete }: DeleteModalProps) => {
   return (
     <Overlay>
-      <ContentContainer>
+      <ContentContainer className={styles.modal}>
         <Text variant="h1">Confirm Delete</Text>
         <Text variant="h5"> Are you sure you want to Delete?</Text>
         <Button label="Yes delete" onClick={onConfirmDelete} />

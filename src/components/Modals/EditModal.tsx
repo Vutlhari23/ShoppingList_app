@@ -78,9 +78,10 @@ export const EditModal = ({ item, onClose, onSaveEdits }: EditProps) => {
         />
 
         <div>
-          <button type="button" onClick={handleSave}>
-            Save
-          </button>
+          <Button 
+          label="Save changes"
+          type="button" onClick={handleSave}/>
+          
 
           <Button label="Cancel" type="button" onClick={onClose} />
         </div>
