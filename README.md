@@ -1,75 +1,76 @@
-# React + TypeScript + Vite
+# Shopping List Application 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+A simple and user-friendly Shopping List Application that allows users to create and manage their shopping lists and items.
+The application provides authentication, shopping-list management, and CRUD operations for shopping items.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+***********************
+Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Authentication
+*User Registration and login
+*User Authentication using acess tokens
+*Log out functionality
+*Protected  application pages
 
-## Expanding the ESLint configuration
+2. User Profile
+* View user profile information
+* Manage user details
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. Shopping List
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+*User can add items to a shopping list
+*View shopping-list items
+* Delete items
+* Search and sort items
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+****************************
+Technologies used
 
-```
+Frontend
+*React
+*Typescript
+*CSS Modules
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Tools used:
+* npm
+*Git & Github
+*Visual Studio
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+***************************
+Backend
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+JSON server
+HTTP Requests using fetch
 
-```
+**************************************
+Running the application
+1. Clone the repository
+git clone <your-repository-url>
+2. Navigate into the project
+cd shopping-list
+3. Install dependencies
+npm install
+
+******************************************
+Use case
+
+-The application is used when the user wants to prepare a shopping list before going to the store
+
+1. User logs in.
+2. User creates a shopping list called Toiletries
+3. User then view this list and add items.
+   *Teeth brush
+   * Soap
+   * Foam bath
+   * Dawn
+
+4. User can edit the quantity.
+5. User can delete the items.
+6. User can sort and search items on the list.
+   
+
+
+
