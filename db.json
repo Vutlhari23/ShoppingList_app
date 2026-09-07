@@ -91,6 +91,12 @@
       "name": "Toiletries",
       "createdAt": "2026-09-05T17:15:05.136Z",
       "id": 8
+    },
+    {
+      "userId": "5",
+      "name": "Thabo's Braai",
+      "createdAt": "2026-09-07T00:36:30.906Z",
+      "id": 9
     }
   ],
   "items": [
@@ -159,15 +165,6 @@
       "id": 8
     },
     {
-      "name": "Dove",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "7",
-      "createdAt": "2026-09-06T17:27:32.188Z",
-      "createdBy": "1",
-      "id": 14
-    },
-    {
       "name": "Chris",
       "category": "personal",
       "quantity": 1,
@@ -178,7 +175,7 @@
     },
     {
       "name": "School bag(Nike)",
-      "category": "personal",
+      "category": "beverage",
       "quantity": 1,
       "shoppingListId": "7",
       "createdAt": "2026-09-06T17:34:38.506Z",

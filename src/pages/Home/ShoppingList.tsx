@@ -1,23 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import { API_URL } from "../../lib/api";
-
 import type { ShoppingList } from "../../type";
-
 import { getCurrentUser } from "../../lib/auth";
-
 import { Button } from "../../components/Button/Button";
-
 import { Text } from "../../components/Text/Text";
-
 import { ContentContainer } from "../../components/ContentContainer/ContentContainer";
-
 import { Navbar } from "../../components/Navbar/Navbar";
-
 import styles from "./ShoppingLists.module.css";
-
 import NoList from "../../assets/no_list.png";
 import DeleteModal from "../../components/Modals/DeleteModal";
 
@@ -33,14 +23,11 @@ export const ShoppingLists = () => {
   const [listName, setListName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
   const [sortField, setSortField] = useState<SortField>("createdAt");
-
-  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
-
+  const [sortOrder, setSortOrder] = useState<SortOrder>("asc")
   const [currentPage, setCurrentPage] = useState(1);
-  const [openConfirmModal,setOpenConfirmModal] = useState(false);
-  const [listToDelete,setListToDelete] = useState("");
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
+  const [listToDelete, setListToDelete] = useState("");
 
   const itemsPerPage = 7;
 
@@ -51,16 +38,11 @@ export const ShoppingLists = () => {
   const fetchShoppingLists = async () => {
     if (!currentUser) {
       setErrorMessage("Could not verify your login. Please log in again.");
-
       setIsLoading(false);
-
       return;
     }
-
     setIsLoading(true);
-
     setErrorMessage("");
-
     try {
       const response = await fetch(
         `${API_URL}/shoppingLists?userId=${encodeURIComponent(currentUser.id)}`,
@@ -245,8 +227,6 @@ export const ShoppingLists = () => {
         <ContentContainer className={styles.content}>
           <ContentContainer className={styles.header}>
             <ContentContainer>
-              
-
               <Text variant="h2">My Lists</Text>
 
               <Text variant="caption" className={styles.eyebrow}>
@@ -280,16 +260,14 @@ export const ShoppingLists = () => {
 
           {shoppingLists.length > 0 && (
             <ContentContainer className={styles.sortControls}>
-              <label htmlFor="sortBy">Sort by:</label>
+              <label className={styles.lbl} htmlFor="sortBy">Sort by:</label>
               <select
                 id="sortBy"
                 value={`${sortField}-${sortOrder}`}
                 onChange={(e) => handleSortChange(e.target.value)}
               >
                 <option value="name-asc">Name</option>
-                <option value="createdAt-desc">
-                  Date Created 
-                </option>
+                <option value="createdAt-desc">Date Created</option>
               </select>
             </ContentContainer>
           )}
@@ -329,27 +307,27 @@ export const ShoppingLists = () => {
                   />
 
                   <Button
+                  className={styles['delete-btn']}
                     label="Delete"
                     onClick={() => {
                       setOpenConfirmModal(true);
                       setListToDelete(list.id);
                     }}
-                    
                   />
                 </ContentContainer>
               </ContentContainer>
             ))}
 
-           {openConfirmModal && (
-  <DeleteModal
-    onClose={() => setOpenConfirmModal(false)}
-    onConfirmDelete={async () => {
-      await deleteShoppingList(listToDelete);
-      setOpenConfirmModal(false);
-      setListToDelete("");
-    }}
-  />
-)}
+          {openConfirmModal && (
+            <DeleteModal
+              onClose={() => setOpenConfirmModal(false)}
+              onConfirmDelete={async () => {
+                await deleteShoppingList(listToDelete);
+                setOpenConfirmModal(false);
+                setListToDelete("");
+              }}
+            />
+          )}
           {!isLoading && shoppingLists.length > 0 && (
             <div className={styles.pagination}>
               <Button
@@ -359,7 +337,7 @@ export const ShoppingLists = () => {
               />
 
               <span>
-                Page {currentPage} of {totalPages} 
+                Page {currentPage} of {totalPages}
               </span>
 
               <Button
@@ -369,7 +347,6 @@ export const ShoppingLists = () => {
               />
             </div>
           )}
-
         </ContentContainer>
       </ContentContainer>
     </>

@@ -1,7 +1,7 @@
 .home-page {
   min-height: 100vh;
   display: flex;
-  background: #f5f7fb;
+  background: white;
 }
 
 /* Sidebar */
@@ -31,12 +31,13 @@
 .header h2 {
   margin: 0;
   font-size: 30px;
-  color: #1f2937;
+  color: #0c0d0f;
+  padding-bottom: 10px;
 }
 
 .eyebrow {
   margin-top: 5px;
-  color: #6b7280;
+  color: #040405;
 }
 
 /* Error */
@@ -68,12 +69,12 @@
 }
 
 .createRow input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  border-color: #656363;
+  box-shadow: 0 0 0 3px rgba(57, 56, 56, 0.1);
 }
 
 .createRow input::placeholder {
-  color: #9ca3af;
+  color: #63676e;
 }
 
 /* Sort */
@@ -81,11 +82,25 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 20px;
   color: #4b5563;
   font-size: 14px;
 }
+.lbl{
+  margin-top: 40px;
+
+}
+.delete-btn{
+  color:#e46565;
+  border-color: rgb(204, 74, 74);
+
+}
+.delete-btn:hover{
+  background-color: #f19292;
+  color: white;
+}
+
 
 .sortControls select {
   padding: 9px 12px;
@@ -97,7 +112,7 @@
 }
 
 .sortControls select:focus {
-  border-color: #6366f1;
+  border-color: #464545;
 }
 
 /* Shopping list card */
@@ -114,7 +129,7 @@
 }
 
 .listCard:hover {
-  border-color: #c7d2fe;
+  border-color: #606162;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
   transform: translateY(-1px);
 }
@@ -129,7 +144,7 @@
 .listInfo h2 {
   margin: 0;
   font-size: 18px;
-  color: #111827;
+  color: #141821;
 }
 
 .listMeta {
@@ -140,7 +155,7 @@
 /* Buttons */
 .listActions {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
 }
 
