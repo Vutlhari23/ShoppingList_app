@@ -8,6 +8,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import styles from "../Home/Home.module.css";
 import { AddItem } from "../../components/Modals/AddItem";
 import { EditModal } from "../../components/Modals/EditModal";
+import DeleteModal from "../../components/Modals/DeleteModal"
 
 type NewItem= {
   name: string;
@@ -30,6 +31,8 @@ export const Home = () => {
   const [message, setMessage] = useState("");
   const [sortField, setSortField] = useState<SortField>("createdAt");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+  const [openConfirmModal,setOpenConfirmModal]= useState(false);
+  const [listToDelete,setListToDelete] =useState("");
     
 
 
@@ -245,6 +248,7 @@ const deleteItem = async (itemId: string) => {
     )
 
   }
+  
 
 
   return (
@@ -276,14 +280,14 @@ const deleteItem = async (itemId: string) => {
         </div>
         </div>
 
-        {message && (
+      { /*{message && (
           <div className={styles.message}>
             <span>{message}</span>
             <button type="button" onClick={() => setMessage("")}>
               ×
             </button>
           </div>
-        )}
+        )}*/}
 
         <ContentContainer className={styles["list-controls"]}>
           <ContentContainer className={styles["search-container"]}>
@@ -351,8 +355,11 @@ const deleteItem = async (itemId: string) => {
               
                 <div className={styles.itemActions}>
                   <Button label="Edit" onClick={() => openEditModal(item)} />
-                  <Button label="Delete" onClick={() => deleteItem(item.id)} />
-                </div>
+                  <Button 
+                  className={styles.delete}
+                  label="Delete" onClick={() => {setOpenConfirmModal(true)
+                    setListToDelete(item.id)} }/>
+                </div> 
               </li>
             ))}
           </ul>
@@ -376,6 +383,16 @@ const deleteItem = async (itemId: string) => {
     onSaveEdits={handleSaveEdit}
         />
       )}
+      {openConfirmModal && (
+            <DeleteModal
+              onClose={() => setOpenConfirmModal(false)}
+              onConfirmDelete={async () => {
+                await deleteItem(listToDelete);
+                setOpenConfirmModal(false);
+                setListToDelete("");
+              }}
+            />
+          )}
     </ContentContainer>
   );
 };

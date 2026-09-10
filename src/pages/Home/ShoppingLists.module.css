@@ -18,6 +18,7 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px;
+  
 }
 
 /* Header */
@@ -122,7 +123,7 @@
   align-items: center;
   padding: 20px;
   margin-bottom: 14px;
-  background: #ffffff;
+  background: #fafafa;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   transition: 0.2s ease;
@@ -155,7 +156,7 @@
 /* Buttons */
 .listActions {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
 }
 

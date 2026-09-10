@@ -30,7 +30,7 @@ export const ShoppingLists = () => {
   const [listToDelete, setListToDelete] = useState("");
 
 
-  const itemsPerPage = 7;
+  const itemsPerPage = 4;
 
   const navigate = useNavigate();
 
@@ -230,10 +230,10 @@ export const ShoppingLists = () => {
             <ContentContainer>
               <Text variant="h2">My Lists</Text>
 
-              <Text variant="caption" className={styles.eyebrow}>
+             {/*} <Text variant="caption" className={styles.eyebrow}>
                 {shoppingLists.length} list
                 {shoppingLists.length === 1 ? "" : "s"}
-              </Text>
+              </Text>*/}
             </ContentContainer>
           </ContentContainer>
 
@@ -332,7 +332,7 @@ export const ShoppingLists = () => {
           {!isLoading && shoppingLists.length > 0 && (
             <div className={styles.pagination}>
               <Button
-                label="Previous"
+                label={<i className="bi bi-arrow-left"></i>}
                 onClick={goToPreviousPage}
                 disabled={currentPage === 1}
               />
@@ -342,7 +342,7 @@ export const ShoppingLists = () => {
               </span>
 
               <Button
-                label="Next"
+                label={<i className="bi bi-arrow-right"></i>}
                 onClick={goToNextPage}
                 disabled={currentPage === totalPages}
               />

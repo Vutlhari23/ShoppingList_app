@@ -7,6 +7,21 @@
   border-radius: 14px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+ 
+}
+
+.delete-modal{
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #f8f1f1;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+   display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* =========================
@@ -115,6 +130,20 @@
   background: #e5e5e5;
 }
 
+.options{
+  display: flex;
+  gap: 10px;
+
+
+}
+.delete{
+color:#e46565;
+border-color: rgb(204, 74, 74);
+}
+.delete:hover{
+  background-color: #f19292;
+  color: white;
+}
 /* =========================
    Mobile
 ========================= */

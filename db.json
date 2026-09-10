@@ -82,12 +82,6 @@
     },
     {
       "userId": "5",
-      "name": "NewList",
-      "createdAt": "2026-09-05T17:02:11.174Z",
-      "id": 7
-    },
-    {
-      "userId": "5",
       "name": "Toiletries",
       "createdAt": "2026-09-05T17:15:05.136Z",
       "id": 8
@@ -100,15 +94,15 @@
     },
     {
       "userId": "5",
-      "name": "Amu's Birthday Celebration",
-      "createdAt": "2026-09-10T20:06:34.696Z",
-      "id": 10
-    },
-    {
-      "userId": "5",
       "name": "Ntsako's Braai",
       "createdAt": "2026-09-10T20:06:54.515Z",
       "id": 11
+    },
+    {
+      "userId": "5",
+      "name": "Toiletries",
+      "createdAt": "2026-09-10T20:25:46.198Z",
+      "id": 12
     }
   ],
   "items": [

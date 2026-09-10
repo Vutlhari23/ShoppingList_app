@@ -22,7 +22,9 @@
 .btn{
   margin-top: 50px;
 }
-
+.itemActions{
+    gap: 10px;
+   }
 
 .list-home {
   flex: 1;
@@ -47,16 +49,7 @@
 display: flex;
 }
 
-.itemActions{
 
-  border-color: #090909;
-  width:120px;
- 
-  gap:30px;
-  display: flex;
-  margin-right: 20px;
- 
-}
 li{
   display:flex;
   justify-content: space-between;
@@ -158,9 +151,7 @@ li{
 
 
 
-.list-home > button {
-  margin-bottom: 25px;
-}
+
 
 
 
@@ -191,9 +182,18 @@ li{
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transform: translateY(-1px);
 }
-
-
-
+.delete{
+color:#e46565;
+border-color: rgb(204, 74, 74);
+}
+.delete:hover{
+  background-color: #f19292;
+  color: white;
+}
+.itemActions{
+  display: flex;
+  gap: 10px;
+}
 
 .list-home li strong {
   min-width: 180px;
@@ -210,36 +210,12 @@ li{
 
 
 
-.list-home li button {
-  height: 36px;
-  padding: 0 14px;
-
-  border: none;
-  border-radius: 7px;
-
-  font-size: 13px;
-  font-weight: 500;
-
-  cursor: pointer;
-  transition: 0.2s ease;
-}
 
 
 
-.list-home li button:first-of-type {
-  margin-left: auto;
-}
 
 
 
-.list-home li button:last-child {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
-.list-home li button:last-child:hover {
-  background: #fecaca;
-}
 .search-container {
   position: relative;
   height: 3rem;
@@ -287,6 +263,13 @@ li{
   color: #6b7280;
   font-size: 15px;
 }
+.itemList{
+ max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px; 
+  padding-right: 20px;
+  
+}
 
 
 
@@ -302,7 +285,10 @@ li{
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
   }
+   .itemActions{
+    gap: 10px;
 
+   }
   .list-home {
     padding: 25px 18px;
   }

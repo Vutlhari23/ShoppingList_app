@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes } from "react";
 import styles from "./Button.module.css";
 
 type ButtonProps = {
-  label: string;
+  label:  React.ReactNode;
   variant?: "default" | "primary" | "danger" | "ghost";
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 

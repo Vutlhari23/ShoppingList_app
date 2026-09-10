@@ -11,11 +11,16 @@ type DeleteModalProps = {
 const DeleteModal = ({ onClose, onConfirmDelete }: DeleteModalProps) => {
   return (
     <Overlay>
-      <ContentContainer className={styles.modal}>
+      <ContentContainer className={styles['delete-modal']}>
         <Text variant="h1">Confirm Delete</Text>
         <Text variant="h5"> Are you sure you want to Delete?</Text>
-        <Button label="Yes delete" onClick={onConfirmDelete} />
+        <ContentContainer className={styles.options} >
         <Button label="Cancel" onClick={onClose} />
+        <Button
+        className={styles.delete}
+         label="Yes delete" onClick={onConfirmDelete} />
+        
+        </ContentContainer>
       </ContentContainer>
     </Overlay>
   );
