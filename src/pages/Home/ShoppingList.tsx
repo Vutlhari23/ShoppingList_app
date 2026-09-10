@@ -29,6 +29,7 @@ export const ShoppingLists = () => {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [listToDelete, setListToDelete] = useState("");
 
+
   const itemsPerPage = 7;
 
   const navigate = useNavigate();

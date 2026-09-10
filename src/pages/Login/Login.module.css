@@ -7,10 +7,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-   
-    
 }
+
 .login-content{
     border: 1px solid lightgray;
     border-radius: 1rem;
@@ -21,11 +19,11 @@
 
 }
 .text-input{
-width:95.5%;
+width:100%;
 margin-bottom: 20px;
 height: 30px;
 border-radius: 0.5rem;
-border: 1px solid lightgray;
+border: 1px solid rgb(27, 23, 23);
 padding-left: 10px;
 
 }
@@ -42,6 +40,6 @@ padding-left: 10px;
     display: flex;
     justify-content: center;
 }
-label{
-     padding-bottom:40px;
+.input-label{
+     margin-bottom: 20px;
     }

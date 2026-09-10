@@ -97,6 +97,18 @@
       "name": "Thabo's Braai",
       "createdAt": "2026-09-07T00:36:30.906Z",
       "id": 9
+    },
+    {
+      "userId": "5",
+      "name": "Amu's Birthday Celebration",
+      "createdAt": "2026-09-10T20:06:34.696Z",
+      "id": 10
+    },
+    {
+      "userId": "5",
+      "name": "Ntsako's Braai",
+      "createdAt": "2026-09-10T20:06:54.515Z",
+      "id": 11
     }
   ],
   "items": [
@@ -163,24 +175,6 @@
       "shoppingListId": "5",
       "createdAt": "2026-09-02T17:13:25.543Z",
       "id": 8
-    },
-    {
-      "name": "Dove Soap",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "7",
-      "createdAt": "2026-09-07T01:11:48.958Z",
-      "createdBy": "1",
-      "id": 16
-    },
-    {
-      "name": "MineStrone",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "7",
-      "createdAt": "2026-09-07T01:12:03.381Z",
-      "createdBy": "1",
-      "id": 17
     }
   ],
   "people": [

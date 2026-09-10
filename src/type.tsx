@@ -13,6 +13,7 @@ export type Item = {
   notes?: string;
   category: string;
   image?: string;
+  checked: boolean;
   createdAt: string;
   createdBy: string;                           
 };

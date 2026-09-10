@@ -13,6 +13,7 @@ type NewItem= {
   name: string;
   category: string;
   quantity: number;
+
 };
 
 type SortField = "name" | "category" | "createdAt";
@@ -29,6 +30,8 @@ export const Home = () => {
   const [message, setMessage] = useState("");
   const [sortField, setSortField] = useState<SortField>("createdAt");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+    
+
 
   const fetchItems = async () => {
     if (!listId) {
@@ -234,6 +237,15 @@ const deleteItem = async (itemId: string) => {
 
     return itemsCopy;
   }, [items, searchTerm, sortField, sortOrder]);
+  
+  const handleCheck =(id :string) => {
+    setItems(
+      items.map((item)=>
+      item.id === id ? {...item, checked: !item.checked} : item)
+    )
+
+  }
+
 
   return (
 
@@ -325,12 +337,18 @@ const deleteItem = async (itemId: string) => {
             {sortedItems.map((item) => (
               <li className={styles.itemCard} key={item.id}>
                
-                <div className={styles.itemInfo}>
-                  <input type="radio"></input>
+                <div className={styles.itemInfo}   style={{ textDecoration: item.checked? "line-through" : "none"}}>
+                  <input type="checkbox"
+                  className={styles.checkbox}
+                  checked={item.checked}
+                  onChange={() =>handleCheck(item.id)}
+                  
+                  ></input>
                   <strong>{item.name}</strong><br/>
                   <span> Category: ({item.category})</span><br/>
                   <span>   Quantity: {item.quantity}</span>
                 </div>
+              
                 <div className={styles.itemActions}>
                   <Button label="Edit" onClick={() => openEditModal(item)} />
                   <Button label="Delete" onClick={() => deleteItem(item.id)} />

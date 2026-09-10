@@ -45,8 +45,8 @@ export const Login = () => {
         <Text className={styles.text} variant="h1">
           Log In
         </Text>
-        <label htmlFor="email">Email</label>
-        <TextInput
+        <label htmlFor="email" className={styles['input-label']}>Email</label>
+        <input
           className={styles['text-input']}
           id="email"
           name="email"
@@ -55,7 +55,7 @@ export const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor="password">Password</label>
-        <TextInput
+        <input
           className={styles['text-input']}
           type="password"
           id="password"

@@ -30,7 +30,9 @@
   margin: 0 auto;
   padding: 40px;
 }
-
+.checkbox{
+  accent-color: black;
+}
 
 
 
@@ -146,8 +148,12 @@ li{
   outline: none;
 }
 
-.sort-container select:focus {
+.sort-container select:checked {
   border-color: #14141b;
+}
+.sort-container option:hover {
+  background-color: #4caf50;
+  color: white;
 }
 
 

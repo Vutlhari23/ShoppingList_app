@@ -41,6 +41,11 @@ export const AddItem = ({ onClose,onSubmit}: AddItemProps) => {
           onChange={(e) => setName(e.target.value)}
           autoFocus
         />
+        <input
+        type="file"
+        
+        
+        ></input>
 
         <label>Choose a Category:</label>
         <select
@@ -49,6 +54,7 @@ export const AddItem = ({ onClose,onSubmit}: AddItemProps) => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
+
           <option value="personal">Personal Care</option>
           <option value="household">HouseHold & Cleaning</option>
           <option value="beverage">Beverages</option>
