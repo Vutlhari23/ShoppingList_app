@@ -252,7 +252,7 @@ const deleteItem = async (itemId: string) => {
 
   }
   const showMessage=(text: string)=>{
-    showMessage(text);
+    setMessage(text);
     setTimeout(()=>{setMessage("")}, 3000);
   };
 
