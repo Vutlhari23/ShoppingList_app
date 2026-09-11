@@ -45,7 +45,7 @@ export const ShoppingLists = () => {
     setErrorMessage("");
     try {
       const response = await fetch(
-        `${API_URL}/shoppingLists?userId=${encodeURIComponent(currentUser.id)}`,
+        `${API_URL}/shoppingLists?userId=${(currentUser.id)}`,
         {
           headers: authHeaders(),
         },
@@ -119,7 +119,7 @@ export const ShoppingLists = () => {
   const deleteShoppingList = async (listId: string) => {
     try {
       const itemsResponse = await fetch(
-        `${API_URL}/items?shoppingListId=${encodeURIComponent(listId)}`,
+        `${API_URL}/items?shoppingListId=${(listId)}`,
         {
           headers: authHeaders(),
         },

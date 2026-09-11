@@ -82,12 +82,6 @@
     },
     {
       "userId": "5",
-      "name": "Toiletries",
-      "createdAt": "2026-09-05T17:15:05.136Z",
-      "id": 8
-    },
-    {
-      "userId": "5",
       "name": "Thabo's Braai",
       "createdAt": "2026-09-07T00:36:30.906Z",
       "id": 9
@@ -97,12 +91,6 @@
       "name": "Ntsako's Braai",
       "createdAt": "2026-09-10T20:06:54.515Z",
       "id": 11
-    },
-    {
-      "userId": "5",
-      "name": "Toiletries",
-      "createdAt": "2026-09-10T20:25:46.198Z",
-      "id": 12
     }
   ],
   "items": [
@@ -171,148 +159,13 @@
       "id": 8
     },
     {
-      "name": "dfd",
+      "name": "Banana",
       "category": "personal",
       "quantity": 1,
-      "shoppingListId": "12",
-      "createdAt": "2026-09-10T21:39:17.019Z",
+      "shoppingListId": "9",
+      "createdAt": "2026-09-11T09:04:57.112Z",
       "createdBy": "1",
       "id": 9
-    },
-    {
-      "name": "ccc",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-10T21:45:25.074Z",
-      "createdBy": "1",
-      "id": 11
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-10T21:45:32.183Z",
-      "createdBy": "1",
-      "id": 12
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-10T21:45:40.342Z",
-      "createdBy": "1",
-      "id": 13
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T00:39:19.804Z",
-      "createdBy": "1",
-      "id": 14
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T00:50:55.442Z",
-      "createdBy": "1",
-      "id": 15
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T00:57:54.611Z",
-      "createdBy": "1",
-      "id": 16
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T01:00:30.640Z",
-      "createdBy": "1",
-      "id": 17
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T01:02:55.836Z",
-      "createdBy": "1",
-      "id": 18
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T01:03:26.936Z",
-      "createdBy": "1",
-      "id": 19
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T01:08:12.112Z",
-      "createdBy": "1",
-      "id": 20
-    },
-    {
-      "name": "",
-      "category": "personal",
-      "quantity": 1,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T01:09:13.592Z",
-      "createdBy": "1",
-      "id": 21
-    },
-    {
-      "name": "Handy andy",
-      "category": "household",
-      "quantity": 6,
-      "shoppingListId": "8",
-      "createdAt": "2026-09-11T01:16:09.841Z",
-      "createdBy": "1",
-      "id": 22
-    },
-    {
-      "name": "Banana",
-      "category": "fruits",
-      "quantity": 6,
-      "shoppingListId": "12",
-      "createdAt": "2026-09-11T01:45:17.674Z",
-      "createdBy": "1",
-      "id": 23
-    },
-    {
-      "name": "Banana",
-      "category": "fruits",
-      "quantity": 6,
-      "shoppingListId": "12",
-      "createdAt": "2026-09-11T01:45:23.005Z",
-      "createdBy": "1",
-      "id": 24
-    },
-    {
-      "name": "Lunch bar Chocolate",
-      "category": "snacks",
-      "quantity": 1,
-      "shoppingListId": "12",
-      "createdAt": "2026-09-11T01:47:32.114Z",
-      "createdBy": "1",
-      "id": 25
     }
   ],
   "people": [
