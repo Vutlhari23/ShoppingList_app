@@ -39,11 +39,16 @@ export const EditModal = ({ item, onClose, onSaveEdits }: EditProps) => {
       <ContentContainer className={styles.modal}
         onClick={(e) => e.stopPropagation()}
       >
+         <ContentContainer className={styles.header}>
         <h3>Edit Item</h3>
+        <i className="bi bi-x-lg"
+        onClick={onClose}></i>
+        </ContentContainer>
 
         <label>Item name</label>
         <input
           type="text"
+          className={styles.input}
           value={editName}
           placeholder="Item"
           onChange={(e) => setEditName(e.target.value)}
@@ -52,7 +57,7 @@ export const EditModal = ({ item, onClose, onSaveEdits }: EditProps) => {
 
         <label>Choose a Category:</label>
         <select
-          className= {styles['input-field']}
+          className={styles.input}
           id="category"
           name="category"
           value={editCategory}
@@ -71,20 +76,19 @@ export const EditModal = ({ item, onClose, onSaveEdits }: EditProps) => {
 
         <label>Quantity</label>
         <input
+        className={styles.input}
           type="number"
           value={editQuantity}
           onChange={(e) => setEditQuantity(e.target.value)}
           min="1"
         />
 
-        <div>
+        <ContentContainer className={styles.options}>
+          <Button label="Cancel" type="button" onClick={onClose} />
           <Button 
           label="Save changes"
           type="button" onClick={handleSave}/>
-          
-
-          <Button label="Cancel" type="button" onClick={onClose} />
-        </div>
+        </ContentContainer>
       </ContentContainer>
     </Overlay>
   );

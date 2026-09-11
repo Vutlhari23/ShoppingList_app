@@ -4,6 +4,7 @@ import styles from "../Overlay/Overlay.module.css"
 type OverlayProps= {
   children : React.ReactNode;
   onClose?: () =>void;
+
 }
 export const Overlay = ({children,onClose}: OverlayProps) => {
 

@@ -3,9 +3,7 @@ import styles from './AddItemModal.module.css';
 import { Overlay } from '../Overlay/Overlay';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { apiFetch } from '../../lib/api';
-import { data } from 'react-router-dom';
-import { API_URL } from '../../lib/api';
+
 
 type editProfileProps= {
     

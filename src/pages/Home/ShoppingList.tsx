@@ -31,7 +31,6 @@ export const ShoppingLists = () => {
 
 
   const itemsPerPage = 4;
-
   const navigate = useNavigate();
 
   const currentUser = getCurrentUser();
@@ -228,7 +227,7 @@ export const ShoppingLists = () => {
         <ContentContainer className={styles.content}>
           <ContentContainer className={styles.header}>
             <ContentContainer>
-              <Text variant="h2">My Lists</Text>
+              <Text variant="h3">My shopping lists</Text>
 
              {/*} <Text variant="caption" className={styles.eyebrow}>
                 {shoppingLists.length} list

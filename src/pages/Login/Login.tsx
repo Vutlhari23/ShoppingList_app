@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Text } from '../../components/Text/Text';
-import { TextInput } from '../../components/TextInput/TextInput';
+
 import { Button } from '../../components/Button/Button';
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
 import styles from '../../pages/Login/Login.module.css';

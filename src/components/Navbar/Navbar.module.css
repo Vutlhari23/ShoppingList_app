@@ -1,9 +1,10 @@
 
 .navbar {
   width: 300px;
-  min-height: 100vh;
+  min-height: 98vh;
   padding: 25px 18px;
   margin-left: 20px;
+  margin-bottom: 10px;
   margin-top: 10px;
   background: white;
   border-radius: 30px;

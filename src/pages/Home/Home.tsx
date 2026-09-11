@@ -8,7 +8,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import styles from "../Home/Home.module.css";
 import { AddItem } from "../../components/Modals/AddItem";
 import { EditModal } from "../../components/Modals/EditModal";
-import DeleteModal from "../../components/Modals/DeleteModal"
+import DeleteModal from "../../components/Modals/DeleteModal";
+import  noList from '../../assets/no_list.png'
 
 type NewItem= {
   name: string;
@@ -52,7 +53,7 @@ export const Home = () => {
       setItems(data);
     } catch (error) {
       console.error("Error fetching items:", error);
-      setMessage("Failed to load shopping list items.");
+      showMessage("Failed to load shopping list items.");
     }
   };
 
@@ -63,7 +64,7 @@ export const Home = () => {
 
 const addNewItem = async (newItem:NewItem) => {
   if (!listId) {
-    setMessage("Shopping list could not be found.");
+    showMessage("Shopping list could not be found.");
     return;
   }
    const itemToSave = {
@@ -93,11 +94,11 @@ const addNewItem = async (newItem:NewItem) => {
       savedItem,
     ]);
 
-    setMessage("Item added successfully.");
+    showMessage("Item added successfully.");
     setIsAddModalOpen(false);
   } catch (error) {
     console.error("Failed to add item:", error);
-    setMessage("Failed to add item.");
+    showMessage("Failed to add item.");
     console.log("Item added");
   }
 };
@@ -116,10 +117,10 @@ const deleteItem = async (itemId: string) => {
         previousItems.filter((item) => item.id !== itemId)
       );
 
-      setMessage("Item deleted successfully.");
+      showMessage("Item deleted successfully.");
     } catch (error) {
       console.error("Failed to delete item:", error);
-      setMessage("Failed to delete item.");
+      showMessage("Failed to delete item.");
     }
   };
 
@@ -146,10 +147,12 @@ const deleteItem = async (itemId: string) => {
         )
       );
 
-      setMessage("Item updated successfully.");
+      showMessage("Item updated successfully.");
+      setMessage("");
     } catch (error) {
       console.error("Failed to update item:", error);
-      setMessage("Failed to update item.");
+      showMessage("Failed to update item.");
+
     }
   };
 
@@ -181,12 +184,12 @@ const deleteItem = async (itemId: string) => {
     }
 
     if (!trimmedCategory) {
-      setMessage("Please enter a category.");
+      showMessage("Please enter a category.");
       return;
     }
 
     if (!Number.isFinite(quantity) || quantity < 1) {
-      setMessage("Quantity must be at least 1.");
+      showMessage("Quantity must be at least 1.");
       return;
     }
 
@@ -248,7 +251,10 @@ const deleteItem = async (itemId: string) => {
     )
 
   }
-  
+  const showMessage=(text: string)=>{
+    showMessage(text);
+    setTimeout(()=>{setMessage("")}, 3000);
+  };
 
 
   return (
@@ -280,14 +286,11 @@ const deleteItem = async (itemId: string) => {
         </div>
         </div>
 
-      { /*{message && (
+      {message && (
           <div className={styles.message}>
             <span>{message}</span>
-            <button type="button" onClick={() => setMessage("")}>
-              ×
-            </button>
           </div>
-        )}*/}
+        )}
 
         <ContentContainer className={styles["list-controls"]}>
           <ContentContainer className={styles["search-container"]}>
@@ -364,7 +367,19 @@ const deleteItem = async (itemId: string) => {
             ))}
           </ul>
         ) : (
-          <p className={styles.noItems}>No items found in this list.</p>
+          <ContentContainer className={styles.emptystate}>
+
+          <img src={noList} />
+          <p className={styles.noItems}>No items yet.Please click "add item" to add items in your list.</p>
+           <Button
+          className={styles.btn}
+            label="Add Item"
+            onClick={() => {
+              setMessage("");
+              setIsAddModalOpen(true);
+            }}
+          />
+          </ContentContainer>
         )}
       </ContentContainer>
 

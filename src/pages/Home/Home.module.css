@@ -320,7 +320,34 @@ border-color: rgb(204, 74, 74);
     margin-left: 0;
   }
 }
+.listActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
+/* Empty state */
+.emptystate {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  color: #6b7280;
+}
+
+.emptystate img {
+  width: 180px;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.emptystate p {
+  max-width: 450px;
+  line-height: 1.6;
+}
 
 
 @media (max-width: 480px) {
